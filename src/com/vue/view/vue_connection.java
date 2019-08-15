@@ -64,7 +64,7 @@ public class vue_connection extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         l_type.setFont(new java.awt.Font("Liberation Mono", 1, 16)); // NOI18N
-        l_type.setForeground(new java.awt.Color(25, 113, 203));
+        l_type.setForeground(new java.awt.Color(0, 204, 51));
         l_type.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         l_type.setText("Login");
 
@@ -79,7 +79,7 @@ public class vue_connection extends javax.swing.JDialog {
         });
 
         l_idcli.setFont(new java.awt.Font("Liberation Mono", 1, 16)); // NOI18N
-        l_idcli.setForeground(new java.awt.Color(25, 113, 203));
+        l_idcli.setForeground(new java.awt.Color(0, 204, 51));
         l_idcli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         l_idcli.setText("Password");
 
