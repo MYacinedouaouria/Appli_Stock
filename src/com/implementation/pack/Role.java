@@ -1434,7 +1434,7 @@ public class Role implements Admin {
 		Facture f=null;
 		PreparedStatement ps;
 		try {
-			ps=co.prepareStatement("select * FROM facture f,Client c where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac order by f.id_fac ASC)");
+			ps=co.prepareStatement("select * FROM facture f,Client c where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac)  order by f.id_fac ASC");
 			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
