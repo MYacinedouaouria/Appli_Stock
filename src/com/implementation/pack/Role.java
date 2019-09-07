@@ -292,6 +292,7 @@ public class Role implements Admin {
 			if(type=="bas"){
 			 ps=co.prepareStatement("select * from PRODUIT where QUANTITE<=stock_alert and QUANTITE!=0");
 			}
+                        
 			else if(type=="null"){
 				 ps=co.prepareStatement("select * from PRODUIT where QUANTITE=0");
 				

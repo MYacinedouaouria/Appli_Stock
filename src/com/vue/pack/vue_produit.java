@@ -175,6 +175,7 @@ public class vue_produit extends javax.swing.JPanel {
         rechercher.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         rechercher.setForeground(new java.awt.Color(255, 0, 0));
         rechercher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/search.png"))); // NOI18N
+        rechercher.setToolTipText("rechercher");
         rechercher.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         rechercher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +187,7 @@ public class vue_produit extends javax.swing.JPanel {
 
         selection_recher.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         selection_recher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "nom produit", "categorie", "rayon", "code produit" }));
+        selection_recher.setToolTipText("");
         selection_recher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selection_recherActionPerformed(evt);
@@ -424,6 +426,7 @@ public class vue_produit extends javax.swing.JPanel {
         actualiser.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         actualiser.setForeground(new java.awt.Color(255, 0, 0));
         actualiser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/refresh5.png"))); // NOI18N
+        actualiser.setToolTipText("actualiser");
         actualiser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualiserActionPerformed(evt);
@@ -442,6 +445,7 @@ public class vue_produit extends javax.swing.JPanel {
         ajouter.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         ajouter.setForeground(new java.awt.Color(255, 0, 0));
         ajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/add.png"))); // NOI18N
+        ajouter.setToolTipText("ajouter");
         ajouter.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         ajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,6 +474,7 @@ public class vue_produit extends javax.swing.JPanel {
         modifier.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         modifier.setForeground(new java.awt.Color(255, 0, 0));
         modifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier.png"))); // NOI18N
+        modifier.setToolTipText("modifier");
         modifier.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         modifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -578,9 +583,8 @@ public class vue_produit extends javax.swing.JPanel {
                                 .addGap(23, 23, 23)
                                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
