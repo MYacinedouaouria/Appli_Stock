@@ -160,11 +160,11 @@ public class Produit {
                                     
                                     case 0:
                                     break;
-                                    case 1: p.setNom_produit(sheet.getCell(j, i).getContents());
+                                    case 1: p.setNom_produit(sheet.getCell(j, i).getContents().toLowerCase());
                                     break;
-                                    case 2: p.setId_categorie(sheet.getCell(j, i).getContents());
+                                    case 2: p.setId_categorie(sheet.getCell(j, i).getContents().toLowerCase());
                                     break;
-                                    case 3: p.setNum_rayon(sheet.getCell(j, i).getContents());
+                                    case 3: p.setNum_rayon(sheet.getCell(j, i).getContents().toLowerCase());
                                     break;
                                     case 4:p.setPrix_unitaire(Float.parseFloat(sheet.getCell(j, i).getContents()));
                                     break;

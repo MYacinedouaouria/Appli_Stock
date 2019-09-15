@@ -20,14 +20,8 @@ public class BeauteTotal extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		super.getTableCellRendererComponent(table, value, isSelected, hasFocus,	row, column);
 
-		int qte = (int) value;
-		//setText(note.toString());
-
-		if (true) {
-			setForeground(Color.BLUE);
-		} else {
-			setForeground(Color.BLACK);
-		}
+		this.setBackground(Color.GRAY);
+                this.setForeground(Color.WHITE);
 
 		return this;
 	}
