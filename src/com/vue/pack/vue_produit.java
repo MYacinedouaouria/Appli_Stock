@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,7 +69,13 @@ public class vue_produit extends javax.swing.JPanel {
         setlist_categorie(lc);
         setlist_rayon(lr);
         table_produit.getTableHeader().setDefaultRenderer(new TableHeader());
+        
+        
+        
         table_produit.getColumnModel().getColumn(5).setCellRenderer(new BeauteQteProduit());
+        
+        
+        
         // init_categorie();
         
          autoSuggestor = new AutoSuggestor(valeur_recher, frame, null, Color.gray, Color.white, Color.red, 0.75f) {
@@ -863,7 +870,7 @@ public class vue_produit extends javax.swing.JPanel {
                     getAbsolutePath();
             int conf=JOptionPane.showConfirmDialog(null, "voulez vraiment effectuer exportation?","demande de confirmation",JOptionPane.YES_NO_OPTION);
         if (conf == 0) {
-            Produit.export_excel(choix.getSelectedFile());
+            Produit.export_excel(new File(choix.getSelectedFile().getAbsolutePath()));
             actualise_table();
             actualise_panel();
         }
