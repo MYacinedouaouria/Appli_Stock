@@ -54,7 +54,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     //Etat_stock_g et=new Etat_stock_g();
      vue_etat_stock1 et=new vue_etat_stock1();
    // Produit_g jp=new Produit_g();
-    vue_produit jp=new vue_produit(this);
+    vue_pro jp=new vue_pro(this);
     //Fournisseur_g four=new Fournisseur_g();
    vue_fournisseur2 four=new vue_fournisseur2();
     

@@ -885,12 +885,16 @@ public class vue_panier extends javax.swing.JDialog {
 		public void insertUpdate(DocumentEvent a) {
 			// TODO Auto-generated method stub
                      try{
+                         String val=nom_produit.getText();
                         jsp.setVisible(true);
                        actualise_panel();
-                       
-			String[] tnom=new String[10];
-			String val=nom_produit.getText();
-			tnom=Produit.recherche(val);
+			List<String> lp=new ArrayList<>();
+			lp=Produit.recherche(val);
+                        
+                        String [] tnom=new String[lp.size()];
+                        for (int i=0; i<lp.size(); i++){
+                            tnom[i]=lp.get(i);
+                        }
 			liste_deroulante.setListData(tnom);
 			 if(r.produit_existe(val)){
                              stock_restant.setText(""+r.recup_quantite_stock(val));

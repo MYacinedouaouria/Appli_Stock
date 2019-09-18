@@ -81,14 +81,13 @@ public class Role implements Admin {
 		try {
                     Connection co=SingletonConnecction.getConnexion();
                             
-			PreparedStatement ps=co.prepareStatement("insert into PRODUIT(NOM_CATEGORIE,NOM_RAYON,NOM_PRO,PRI_UNI,QUANTITE,stock_alert) value(?,?,?,?,?,?)");
+			PreparedStatement ps=co.prepareStatement("insert into PRODUIT(NOM_CATEGORIE,NOM_PRO,PRI_UNI,QUANTITE,stock_alert) value(?,?,?,?,?,?)");
 			
 			ps.setString(1, p.getId_categorie());
-			ps.setString(2, p.getNum_rayon());
-			ps.setString(3, p.getNom_produit());
-			ps.setInt(5, p.getQuantite());
-			ps.setFloat(4, p.getPrix_unitaire());
-                        ps.setInt(6, p.getAlert());
+			ps.setString(2, p.getNom_produit());
+			ps.setInt(4, p.getQuantite());
+			ps.setFloat(3, p.getPrix_unitaire());
+                        ps.setInt(5, p.getAlert());
 			ps.executeUpdate();
 			ps.close();
 			
@@ -105,13 +104,12 @@ public class Role implements Admin {
 	public boolean modifier_produit(Produit p) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=co.prepareStatement("update PRODUIT set NOM_CATEGORIE=?,NOM_RAYON=?,NOM_PRO=?,PRI_UNI=?,QUANTITE=?,stock_alert=? where ID_PRO=?");
+			PreparedStatement ps=co.prepareStatement("update PRODUIT set NOM_CATEGORIE=?,NOM_PRO=?,PRI_UNI=?,QUANTITE=?,stock_alert=? where ID_PRO=?");
 			ps.setString(1, p.getId_categorie());
-			ps.setString(2, p.getNum_rayon());
-			ps.setString(3, p.getNom_produit());
-			ps.setInt(5, p.getQuantite());
-			ps.setFloat(4, p.getPrix_unitaire());
-                        ps.setInt(6, p.getAlert());
+			ps.setString(2, p.getNom_produit());
+			ps.setInt(4, p.getQuantite());
+			ps.setFloat(3, p.getPrix_unitaire());
+                        ps.setInt(5, p.getAlert());
                         ps.setInt(7, p.getId_produit());
 			ps.executeUpdate();
 			ps.close();
@@ -193,7 +191,6 @@ public class Role implements Admin {
                                 p=new Produit();
 				p.setId_produit(rs.getInt("ID_PRO"));
 				p.setId_categorie(rs.getString("NOM_CATEGORIE"));
-				p.setNum_rayon(rs.getString("NOM_RAYON"));
 				p.setNom_produit(rs.getString("NOM_PRO"));
 				p.setQuantite(rs.getInt("QUANTITE"));
 				p.setPrix_unitaire(rs.getFloat("PRI_UNI"));
@@ -234,7 +231,6 @@ public class Role implements Admin {
 				p=new Produit();
 				p.setId_produit(rs.getInt("ID_PRO"));
 				p.setId_categorie(rs.getString("NOM_CATEGORIE"));
-				p.setNum_rayon(rs.getString("NOM_RAYON"));
 				p.setNom_produit(rs.getString("NOM_PRO"));
 				p.setQuantite(rs.getInt("QUANTITE"));
 				p.setPrix_unitaire(rs.getFloat("PRI_UNI"));
@@ -266,7 +262,6 @@ public class Role implements Admin {
 				p=new Produit();
 				p.setId_produit(rs.getInt("ID_PRO"));
 				p.setId_categorie(rs.getString("NOM_CATEGORIE"));
-				p.setNum_rayon(rs.getString("NOM_RAYON"));
 				p.setNom_produit(rs.getString("NOM_PRO"));
 				p.setQuantite(rs.getInt("QUANTITE"));
 				p.setPrix_unitaire(rs.getFloat("PRI_UNI"));
@@ -308,7 +303,6 @@ public class Role implements Admin {
 				p=new Produit();
 				p.setId_produit(rs.getInt("ID_PRO"));
 				p.setId_categorie(rs.getString("NOM_CATEGORIE"));
-				p.setNum_rayon(rs.getString("NOM_RAYON"));
 				p.setNom_produit(rs.getString("NOM_PRO"));
 				p.setQuantite(rs.getInt("QUANTITE"));
 				p.setPrix_unitaire(rs.getFloat("PRI_UNI"));
@@ -622,7 +616,7 @@ public class Role implements Admin {
 		Commande_four cf=null;
 		try {
 			PreparedStatement ps;
-			 ps=co.prepareStatement("select * from LIVRAISON as cf,FOURNISSEUR as f, PRODUIT as p where cf.id_fournisseur=f.id_fournisseur and cf.id_pro=p.id_pro");
+			 ps=co.prepareStatement("select * from LIVRAISON as cf,FOURNISSEUR f, PRODUIT as p where cf.id_fournisseur=f.id_fournisseur and cf.id_pro=p.id_pro");
 			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
@@ -1348,13 +1342,7 @@ public class Role implements Admin {
                              ls.add(rs.getString("NOM_CATEGORIE"));
                          }
                 }
-                 else{
-                        PreparedStatement ps=co.prepareStatement("select * from rayon");
-                        ResultSet rs=ps.executeQuery();
-                        while(rs.next()){
-                             ls.add(rs.getString("NOM_RAYON"));
-                         }
-                }
+                 
                     
                 
             } catch (SQLException ex) {
@@ -1385,10 +1373,7 @@ public class Role implements Admin {
             return true;
     }
 
-    @Override
-    public void ajouter_rayon(String nom) {
-        
-    }
+ 
 
     @Override
     public boolean ajouter_facture(Facture f) {

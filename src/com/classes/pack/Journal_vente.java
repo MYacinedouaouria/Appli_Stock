@@ -34,13 +34,13 @@ public class Journal_vente {
    
     public List<Journal_vente> liste_vente;
 
-    public Journal_vente(int id_pro, String nom_pro, String cate,String rayon,int quantite_vendues, float total_vendu) {
+    public Journal_vente(int id_pro, String nom_pro, String cate,int quantite_vendues, float total_vendu) {
         this.id_pro = id_pro;
         this.nom_pro = nom_pro;
         this.quantite_vendues = quantite_vendues;
         this.total_vendu = total_vendu;
         this.categorie=cate;
-        this.rayon=rayon;
+        
     }
     public Journal_vente(){}
     
@@ -186,18 +186,18 @@ SingletonConnecction sg=new SingletonConnecction();
      try {
              PreparedStatement ps;
                 if(filtrage!="tous"){
-                    ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie,p.nom_rayon, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f  where p.id_pro=c.id_pro and c.id_fac=f.id_fac AND f.date_fac BETWEEN ? AND ?  group by p.id_pro order by qv asc");
+                    ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f  where p.id_pro=c.id_pro and c.id_fac=f.id_fac AND f.date_fac BETWEEN ? AND ?  group by p.id_pro order by qv asc");
                      ps.setString(1,this.getDate1());
                      ps.setString(2, this.getDate2());
                 }
                 else{
-                     ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie,p.nom_rayon, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f where p.id_pro=c.id_pro and c.id_fac=f.id_fac group by p.id_pro order by qv asc");
+                     ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f where p.id_pro=c.id_pro and c.id_fac=f.id_fac group by p.id_pro order by qv asc");
                 }
                  
          
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				jv=new Journal_vente(rs.getInt("c.id_pro"),rs.getString("p.nom_pro"),rs.getString("p.nom_categorie"),rs.getString("p.nom_rayon"), rs.getInt("qv"), rs.getFloat("tv"));
+				jv=new Journal_vente(rs.getInt("c.id_pro"),rs.getString("p.nom_pro"),rs.getString("p.nom_categorie"), rs.getInt("qv"), rs.getFloat("tv"));
                                 lv.add(jv);
                         }
 		} catch (SQLException e) {

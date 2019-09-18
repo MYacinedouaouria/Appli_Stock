@@ -540,7 +540,6 @@ public class vue_produit1 extends javax.swing.JPanel {
             //recuperation des valeures dans les champs de saisie
             
             p.setId_categorie((String)categorie.getSelectedItem());
-            p.setNum_rayon((String)rayon.getSelectedItem());
             p.setNom_produit(nom_produit.getText());
             p.setPrix_unitaire(Integer.parseInt(prix_uni.getText()));
             p.setAlert(Integer.parseInt(stock_alert.getText()));
@@ -594,7 +593,6 @@ public class vue_produit1 extends javax.swing.JPanel {
                          //recuperation des valeures dans les champs de saisie
                          
                          p.setId_categorie((String)categorie.getSelectedItem());
-                         p.setNum_rayon((String)rayon.getSelectedItem());
                          p.setNom_produit(nom_produit.getText());
                          p.setPrix_unitaire(Integer.parseInt(prix_uni.getText()));
                          p.setAlert(Integer.parseInt(stock_alert.getText()));
@@ -699,7 +697,6 @@ public class vue_produit1 extends javax.swing.JPanel {
 			
 			nom_produit.setText(p.getNom_produit());
 			categorie.setSelectedItem(p.getId_categorie());
-                        rayon.setSelectedItem(p.getNum_rayon().trim());
 			prix_uni.setValue(p.getPrix_unitaire());
                         stock_alert.setValue(p.getAlert());
 			

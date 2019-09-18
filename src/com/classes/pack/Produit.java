@@ -21,19 +21,17 @@ public class Produit {
 		private int id_produit;
 		private String nom_produit;
 		private float prix_unitaire;
-		private String num_rayon;
 		private String id_categorie;
 		private int quantite;
 		private int alert;
 		public Produit(){}
 		
 		public Produit(String nom_produit, float prix_unitaire,
-				String num_rayon, String id_categorie, int quantite,int alert) {
+				 String id_categorie, int quantite,int alert) {
 			super();
 			
 			this.nom_produit = nom_produit;
 			this.prix_unitaire = prix_unitaire;
-			this.num_rayon = num_rayon;
 			this.id_categorie = id_categorie;
 			this.quantite = quantite;
                         this.alert=alert;
@@ -56,12 +54,6 @@ public class Produit {
 		public void setPrix_unitaire(float prix_unitaire) {
 			this.prix_unitaire = prix_unitaire;
 		}
-		public String getNum_rayon() {
-			return num_rayon;
-		}
-		public void setNum_rayon(String num_rayon) {
-			this.num_rayon = num_rayon;
-		}
 		public String getId_categorie() {
 			return id_categorie;
 		}
@@ -81,10 +73,10 @@ public class Produit {
 			this.alert = alert;
 		}
 		
-		public static String[] recherche(String val) {
+		public static List<String> recherche(String val) {
 		// TODO Auto-generated method stub
-		//List<Produit> lp=new ArrayList<>();
-		String[] tab = new String[10];
+		List<String> lp=new ArrayList<>();
+		
 		SingletonConnecction sg=new SingletonConnecction();
 		Connection co=sg.getConnexion();
 		int i=0;
@@ -96,7 +88,7 @@ public class Produit {
 				ResultSet rs=ps.executeQuery();
 				while(rs.next()){
 				
-				tab[i]=rs.getString("nom_pro");
+				lp.add(rs.getString("nom_pro"));
 				i++;
 				
 			}
@@ -105,8 +97,8 @@ public class Produit {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			if(tab.length==0)throw new RuntimeException("pas de produit trouver");
-		return tab;
+			
+		return lp;
 	}
 		
                 //on surcharve la methose rechercher pour une implementation avec autocompletion
@@ -164,13 +156,11 @@ public class Produit {
                                     break;
                                     case 2: p.setId_categorie(sheet.getCell(j, i).getContents().toLowerCase());
                                     break;
-                                    case 3: p.setNum_rayon(sheet.getCell(j, i).getContents().toLowerCase());
+                                    case 3:p.setPrix_unitaire(Float.parseFloat(sheet.getCell(j, i).getContents()));
                                     break;
-                                    case 4:p.setPrix_unitaire(Float.parseFloat(sheet.getCell(j, i).getContents()));
+                                    case 4:p.setQuantite(Integer.parseInt(sheet.getCell(j, i).getContents()));
                                     break;
-                                    case 5:p.setQuantite(Integer.parseInt(sheet.getCell(j, i).getContents()));
-                                    break;
-                                    case 6:p.setAlert(Integer.parseInt(sheet.getCell(j, i).getContents()));
+                                    case 5:p.setAlert(Integer.parseInt(sheet.getCell(j, i).getContents()));
                                     break;
                                     default:System.out.println("rien"+ j);
                                 }

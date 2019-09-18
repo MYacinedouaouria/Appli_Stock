@@ -55,7 +55,6 @@ public class vue_depense1 extends javax.swing.JPanel {
         processus=this;
         actualise_table();
         table_depense.addMouseListener(new remplissage());
-        selection_recher.setEditable(true);
         selection_recher.setAutoscrolls(true);
         
         table_depense.getTableHeader().setDefaultRenderer(new TableHeader());

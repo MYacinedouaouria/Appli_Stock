@@ -51,7 +51,7 @@ public interface Admin {
 	
         //traitement sur les categories et les rauons
         public boolean ajouter_categorie(String nom);
-        public void ajouter_rayon(String nom);
+        
         
 //differents traitement sur le fournisseur
 		boolean ajouter_fournisseur(Fournisseur f);

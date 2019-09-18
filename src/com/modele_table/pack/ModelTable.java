@@ -13,7 +13,7 @@ public class ModelTable extends AbstractTableModel{
 		
 		public List<Produit> l_e=new ArrayList<Produit>();
 		//public String[] entete={"MATRICULE","NOM","PRENOM","NOM_FILIERE","NIVEAU","AGE","SEXE"};
-		public String [] title={"NUMERO", "NOM", "CATEGORIE", "RAYON", "PRIX UNITAIRE", "QUANTITE EN STOCK","STOCK ALERT"};
+		public String [] title={"NUMERO", "NOM", "CATEGORIE","PRIX UNITAIRE", "QUANTITE EN STOCK","STOCK ALERT"};
 		public ModelTable(){
 			super();
 			
@@ -47,13 +47,12 @@ public class ModelTable extends AbstractTableModel{
 				return l_e.get(i).getNom_produit();
 			case 2:
 				return l_e.get(i).getId_categorie();
+			
 			case 3:
-				return l_e.get(i).getNum_rayon();
-			case 4:
 				return l_e.get(i).getPrix_unitaire();
-			case 5:
+			case 4:
 				return l_e.get(i).getQuantite();
-			case 6:
+			case 5:
 				return l_e.get(i).getAlert();
 			default:
 				return null;

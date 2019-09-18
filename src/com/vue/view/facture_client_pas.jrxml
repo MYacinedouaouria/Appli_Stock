@@ -29,7 +29,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[SOCIETE QUIMOCAM]]></text>
+				<text><![CDATA[PARFUMERIE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="128" y="40" width="146" height="20" uuid="e7e1dc66-90ec-4413-ac6d-f59bf949f584"/>
@@ -43,14 +43,14 @@
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[TEL: 696812610/677124830]]></text>
+				<text><![CDATA[TEL: XXXXXXXXXXXXXXXXX]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="128" y="20" width="146" height="20" uuid="00eefab3-bb16-43cb-b9a3-1f4c27619878"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[RUE 44 AVIATION]]></text>
+				<text><![CDATA[TAYANDI]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="123" y="123" width="75" height="20" uuid="5bda2e95-d2fa-46d0-b722-992416f70192"/>
