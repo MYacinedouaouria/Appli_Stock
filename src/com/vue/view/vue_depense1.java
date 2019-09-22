@@ -394,6 +394,7 @@ public class vue_depense1 extends javax.swing.JPanel {
             c.setType_dep((String)type_dep.getSelectedItem());
             c.setNature(nature.getText());
             c.setMontant(Float.parseFloat(montant.getText()));
+            c.setLogin_user(vue_connection.user.getLogin());
             //recuperation de la date
             Date curdate=new Date();
             java.sql.Date datesql=new java.sql.Date(curdate.getYear(),curdate.getMonth(), curdate.getDate());

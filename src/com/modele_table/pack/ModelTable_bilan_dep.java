@@ -15,7 +15,7 @@ public class ModelTable_bilan_dep extends AbstractTableModel{
 		
 		public List<bilan_depense> l_e=new ArrayList<bilan_depense>();
 		//public String[] entete={"MATRICULE","NOM","PRENOM","NOM_FILIERE","NIVEAU","AGE","SEXE"};
-		public String [] title={"DATE", "TYPE", "NATURE", "MONTANT"};
+		public String [] title={"DATE", "TYPE", "NATURE", "MONTANT","STATUT VENDEUR"};
 		public ModelTable_bilan_dep(){
 			super();
 			
@@ -52,6 +52,8 @@ public class ModelTable_bilan_dep extends AbstractTableModel{
 				return l_e.get(i).getNature();
 			case 3:
 				return l_e.get(i).getMontant();
+                        case 4:
+				return l_e.get(i).getStatut_vendeur();
 			
 			default:
 				return null;

@@ -8,17 +8,24 @@ public class Depense {
 	private String nature;
 	private float montant;
 	private Date date_dep;
+        private String login_user;
+        
+        
 	
 	public Depense(){}
 	public Depense( String type_dep, String nature,
-			float montant, Date date_dep) {
+			float montant, Date date_dep,String login) {
 		super();
 		
 		this.type_dep = type_dep;
 		this.nature = nature;
 		this.montant = montant;
 		this.date_dep = date_dep;
+                this.login_user=login;
 	}
+
+   
+        
 	public int getNumero_dep() {
 		return numero_dep;
 	}
@@ -44,6 +51,14 @@ public class Depense {
 		this.montant = montant;
 	}
 
+    public String getLogin_user() {
+        return login_user;
+    }
+
+    public void setLogin_user(String login_user) {
+        this.login_user = login_user;
+    }
+        
     public Date getDate_dep() {
         return date_dep;
     }

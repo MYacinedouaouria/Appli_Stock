@@ -29,6 +29,7 @@ public class bilan_depense {
     String nature;
     Date date_dep;
     Float montant;
+    String statut_vendeur;
     
     private float total_final;
    
@@ -38,12 +39,23 @@ public class bilan_depense {
    
     public bilan_depense(){}
 
-    public bilan_depense(String type, String nature, Date date_dep, Float montant) {
+    public bilan_depense(String type, String nature, Date date_dep, Float montant,String statut) {
         this.type = type;
         this.nature = nature;
         this.date_dep = date_dep;
         this.montant = montant;
+        this.statut_vendeur=statut;
     }
+
+    public String getStatut_vendeur() {
+        return statut_vendeur;
+    }
+
+    public void setStatut_vendeur(String statut_vendeur) {
+        this.statut_vendeur = statut_vendeur;
+    }
+
+  
 
     public String getType() {
         return type;
@@ -172,22 +184,22 @@ SingletonConnecction sg=new SingletonConnecction();
      try {
              PreparedStatement ps;
                 if(filtrage!="tous"){
-                    ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep from depense where date_dep BETWEEN ? AND ?");
+                    ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep,u.TYPE from depense as d,admin as u where d.login=u.login and date_dep BETWEEN ? AND ?");
                      ps.setString(1,this.getDate1());
                      ps.setString(2, this.getDate2());
                 }
                 else{
-                     ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep from depense");
+                     ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep,u.TYPE from depense as d,admin as u where d.login=u.login");
                 }
                  
          
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				jv=new bilan_depense(rs.getString("type_depense"),rs.getString("nature"),rs.getDate("date_dep"), rs.getFloat("montant"));
+				jv=new bilan_depense(rs.getString("type_depense"),rs.getString("nature"),rs.getDate("date_dep"), rs.getFloat("montant"),rs.getString("u.TYPE"));
                                 lv.add(jv);
                         }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch blocku
 			e.printStackTrace();
 		}
      

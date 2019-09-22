@@ -651,12 +651,13 @@ public class Role implements Admin {
 	public boolean ajouter_dep(Depense p) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=co.prepareStatement("insert into depense(TYPE_DEPENSE,NATURE,MONTANT,DATE_DEP) value(?,?,?,?)");
+			PreparedStatement ps=co.prepareStatement("insert into depense(TYPE_DEPENSE,NATURE,MONTANT,DATE_DEP,login) value(?,?,?,?,?)");
 			
 			ps.setString(1, p.getType_dep());
 			ps.setString(2, p.getNature());
 			ps.setFloat(3, p.getMontant());
 			ps.setDate(4, p.getDate_dep());
+                        ps.setString(5, p.getLogin_user());
 			ps.executeUpdate();
 			ps.close();
 			
