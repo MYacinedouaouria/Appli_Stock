@@ -5,6 +5,7 @@
  */
 package com.vue.view;
 
+import com.classes.pack.Controle;
 import com.classes.pack.Fournisseur;
 import com.vue.pack.*;
 import com.classes.pack.SingletonConnecction;
@@ -25,8 +26,10 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -502,8 +505,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 858, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, 0))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -613,7 +615,9 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
         try{
 
             //recuperation des valeures dans les champs de saisie
-
+            JTextField[] tj={entreprise,nom_four,addresse,ville};
+            JFormattedTextField[] jf={tel_four};
+            if(Controle.verification_textfield(tj)&& Controle.verification_formatedfields(jf)){
             f.setEntreprise(entreprise.getText());
             f.setNom_four(nom_four.getText());
             f.setAdd_four(addresse.getText());
@@ -631,7 +635,12 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
             else{
                 jop.showMessageDialog(null, "code du fournisseur deja existant","erreur d'ajout",JOptionPane.ERROR_MESSAGE);
             }
+           }
+             else{
+                 jop.showMessageDialog(null, "remplir tout vos champs","erreur de remplissage",JOptionPane.ERROR_MESSAGE);
+            }
         }
+        
         catch(NumberFormatException n){
             jop.showMessageDialog(null, "veuillez remplir tout vos chamos","warming",JOptionPane.WARNING_MESSAGE);
         }
@@ -666,6 +675,9 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
         }
         catch(NumberFormatException n){
             jop.showMessageDialog(null, "veuillez remplir tout vos chamos","warming",JOptionPane.WARNING_MESSAGE);
+        }
+        catch(IndexOutOfBoundsException i){
+            jop.showMessageDialog(null, "aucune selection de fournisseur","selection requise",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_modifierActionPerformed
 
@@ -708,6 +720,27 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
 
     private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
         // TODO add your handling code here:
+         try{
+             // TODO add your handling code here:
+    	int selection=table_fournisseur.getSelectedRow();
+    	Fournisseur f=model.l_e.get(selection);
+    	int confirmation=jop.showConfirmDialog(null, "voulez vous vraiment supprimer le fournisseur de code : " +f.getId_four(),"confirmation de suppression",JOptionPane.YES_NO_CANCEL_OPTION);
+			if(confirmation==0){
+				if(r.supprimer_fournisseur(f)){
+					
+					model.l_e.remove(f);
+					jop.showMessageDialog(null,"suppression reussie","suppression",JOptionPane.INFORMATION_MESSAGE);
+					actualise_panel();
+				}
+				else{
+					jop.showMessageDialog(null,"erreur de suppression","error",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+        }
+        catch(IndexOutOfBoundsException i){
+            jop.showMessageDialog(null, "aucune selection de fournisseur","selection requise",JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_supprimerActionPerformed
 
     //la classe interne remplissage

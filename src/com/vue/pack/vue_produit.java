@@ -42,9 +42,7 @@ import javax.swing.ListSelectionModel;
  */
 public class vue_produit extends javax.swing.JPanel {
 
-    /**
-     * Creates new form vue_produit
-     */
+    
     Role r=new Role();
 	JOptionPane jop=new JOptionPane();
 	List<Produit> lp=new ArrayList<Produit>();

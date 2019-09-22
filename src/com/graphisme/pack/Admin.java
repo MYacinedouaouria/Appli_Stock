@@ -9,6 +9,7 @@ import com.classes.pack.Depense;
 import com.classes.pack.Facture;
 import com.classes.pack.Fournisseur;
 import com.classes.pack.Produit;
+import com.classes.pack.stat_histogramme;
 
 
 public interface Admin {
@@ -101,6 +102,8 @@ public interface Admin {
                List<Facture> list_facture(int num_fac);
                List<Facture> list_facture(String type,String valeur);
               
+               //methode pour consulter le bilan a partir de histogramme
+               public List<stat_histogramme> bilan(String critere);
 }
 
 //Cher monsieur fran vous avez du pain sur  la planche car vous 

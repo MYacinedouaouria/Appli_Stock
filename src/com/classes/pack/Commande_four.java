@@ -22,16 +22,19 @@ public class Commande_four {
 	private String  tel_four;
 	private String nom_produit;
 	private int qte_com;
+        private float prix_achat;
+        
 	
 	//constructeurs anec parametres
 	public Commande_four(){}
 
-    public Commande_four(int id_com, Date date, int id_four,int id_pro, String nom_produit, int qte_com) {
+    public Commande_four(int id_com, Date date, int id_four,int id_pro, String nom_produit,float prix_achat, int qte_com) {
         this.id_com = id_com;
         this.date = date;
         this.id_four = id_four;
         this.id_pro=id_pro;
         this.nom_produit = nom_produit;
+        this.prix_achat=prix_achat;
         this.qte_com = qte_com;
     }
 	
@@ -92,6 +95,15 @@ public class Commande_four {
 	public void setNom_produit(String nom_produit) {
 		this.nom_produit = nom_produit;
 	}
+
+    public float getPrix_achat() {
+        return prix_achat;
+    }
+
+    public void setPrix_achat(float prix_achat) {
+        this.prix_achat = prix_achat;
+    }
+        
 	public int getQte_com() {
 		return qte_com;
 	}

@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModelTable_dep extends AbstractTableModel{
 		
-		public List<Depense> l_e=new ArrayList<>();
+		public List<Depense> l_e=new ArrayList<Depense>();
 		//public String[] entete={"MATRICULE","NOM","PRENOM","NOM_FILIERE","NIVEAU","AGE","SEXE"};
 		public String [] title={"NUM DEPENSE", "TYPE", "NATURE", "MONTANT", "DATE"};
 		public ModelTable_dep(){
@@ -43,7 +43,7 @@ public class ModelTable_dep extends AbstractTableModel{
 			// TODO Auto-generated method stub
 			switch (j) {
 			case 0:
-				return l_e.get(i).getNumero_dep();
+				return i+1;
 			case 1:
 				return l_e.get(i).getType_dep();
 			case 2:

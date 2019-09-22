@@ -5,6 +5,7 @@
  */
 package com.vue.pack;
 
+import com.classes.pack.Controle;
 import com.vue.view.*;
 import com.classes.pack.Produit;
 import com.vue.pack.*;
@@ -26,9 +27,12 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -129,6 +133,7 @@ public class vue_pro extends javax.swing.JPanel {
         ajouter = new javax.swing.JButton();
         actualiser = new javax.swing.JButton();
         modifier = new javax.swing.JButton();
+        import_excel = new javax.swing.JButton();
 
         acceuil.setBackground(new java.awt.Color(245, 240, 253));
         acceuil.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
@@ -518,6 +523,15 @@ public class vue_pro extends javax.swing.JPanel {
                 .addGap(279, 279, 279))
         );
 
+        import_excel.setBackground(new java.awt.Color(67, 104, 104));
+        import_excel.setForeground(java.awt.Color.white);
+        import_excel.setText("IMPORT DE FICHIER VIA EXCEL");
+        import_excel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                import_excelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -538,10 +552,16 @@ public class vue_pro extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(import_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,11 +579,11 @@ public class vue_pro extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(import_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -718,7 +738,9 @@ public class vue_pro extends javax.swing.JPanel {
         try{
 
             //recuperation des valeures dans les champs de saisie
-            
+            JTextField[] tj={nom_produit};
+            JFormattedTextField[] jf={prix_uni,stock_alert};
+            if(Controle.verification_textfield(tj)&& Controle.verification_formatedfields(jf)){
             p.setId_categorie((String)categorie.getSelectedItem());
             p.setNom_produit(nom_produit.getText());
             p.setPrix_unitaire(Integer.parseInt(prix_uni.getText()));
@@ -746,8 +768,14 @@ public class vue_pro extends javax.swing.JPanel {
             else{
                 jop.showMessageDialog(null, "ce produit existe deja ! verifier son nom","erreur d'ajout",JOptionPane.ERROR_MESSAGE);
             }
+          
+            }
+            else{
+                 jop.showMessageDialog(null, "remplir tout vos champs","erreur de remplissage",JOptionPane.ERROR_MESSAGE);
+            }
         }
-        catch(NumberFormatException n){
+        
+          catch(NumberFormatException n){
             jop.showMessageDialog(null, "veuillez remplir tout vos champs","warming",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_ajouterActionPerformed
@@ -801,6 +829,29 @@ public class vue_pro extends javax.swing.JPanel {
             jop.showMessageDialog(null, "aucune selection de produit","selection requise",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_modifierActionPerformed
+
+    private void import_excelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_import_excelActionPerformed
+        // TODO add your handling code here:
+        JFileChooser choix = new JFileChooser();
+
+        int retour = choix.showOpenDialog(null);
+        if (retour == JFileChooser.APPROVE_OPTION) {
+            // un fichier a été choisi (sortie par OK)
+            // nom du fichier  choisi 
+            choix.getSelectedFile().getName();
+            // chemin absolu du fichier choisi
+            choix.getSelectedFile().
+                    getAbsolutePath();
+            int conf=JOptionPane.showConfirmDialog(null, "voulez vraiment effectuer exportation?","demande de confirmation",JOptionPane.YES_NO_OPTION);
+        if (conf == 0) {
+            Produit.export_excel(choix.getSelectedFile());
+            actualise_table();
+            actualise_panel();
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "aucune selection de fichier excel au format xls");
+        }
+    }//GEN-LAST:event_import_excelActionPerformed
 //la classe interne remplissage
    //la classe interne remplissage
     public class remplissage implements MouseListener{
@@ -812,7 +863,7 @@ public class vue_pro extends javax.swing.JPanel {
 			Produit p=model.l_e.get(selection);
 			
 			nom_produit.setText(p.getNom_produit());
-			categorie.setSelectedItem(p.getId_categorie());
+			categorie.setSelectedItem((String)p.getId_categorie().trim());
 			prix_uni.setValue(p.getPrix_unitaire());
                         stock_alert.setValue(p.getAlert());
 			
@@ -852,6 +903,7 @@ public class vue_pro extends javax.swing.JPanel {
     private javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private javax.swing.JComboBox<String> categorie;
+    private javax.swing.JButton import_excel;
     private javax.swing.JButton imprimer;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;

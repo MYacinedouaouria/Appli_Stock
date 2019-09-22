@@ -10,6 +10,7 @@ import com.classes.pack.Client;
 import com.classes.pack.Utilisateur;
 import com.implementation.pack.Acteur;
 import com.implementation.pack.Role;
+import com.sun.glass.events.KeyEvent;
 import com.vue.view.vue_panier;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -82,6 +83,18 @@ public class vue_connection extends javax.swing.JDialog {
         l_idcli.setForeground(new java.awt.Color(242, 153, 97));
         l_idcli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         l_idcli.setText("Password");
+
+        login.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginKeyPressed(evt);
+            }
+        });
+
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
 
         connection.setBackground(new java.awt.Color(245, 240, 253));
         connection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -186,56 +199,32 @@ public class vue_connection extends javax.swing.JDialog {
 
     private void connectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectionActionPerformed
         // TODO add your handling code here:
-        String login=this.login.getText();
-        String password=this.password.getText();
-        if(login.length()==0||password.length()==0){
-                JOptionPane.showMessageDialog(null, "veuillez remplir tout les champs");
-        }
-        else{
-                Acteur acteur=new Acteur();
-                Utilisateur user=acteur.connection(login, password);
-                   if(user!=null){
-                    try {
-                        this.dispose();
-                        page_acceuil1 fe=new page_acceuil1();
-                        
-                      //si on est en presence du vendeur
-                        if(user.getType().equals("vendeur")){
-                            fe.getClient1().setEnabled(false);
-                            fe.getUtilisateur().setEnabled(false);
-                            fe.getEntree().setEnabled(false);
-                            fe.getProduit().setEnabled(false);
-                            fe.getDepense().setEnabled(false);
-                            fe.getFournisseur().setEnabled(false);
-                            fe.getMenu_nouveau_achat().setEnabled(false);
-                        }
-                        //en presence du magasinier
-                        else if(user.getType().equals("magasinier")){
-                             fe.getClient1().setEnabled(false);
-                            fe.getUtilisateur().setEnabled(false);
-                            fe.getProduit().setEnabled(false);
-                            fe.getDepense().setEnabled(false);
-                            fe.getVente().setEnabled(false);
-                            fe.getFournisseur().setEnabled(false);
-                            //on desactive les menus
-                            fe.getMenu_nouvelle_vente().setEnabled(false);
-                        }
-                        //sinon en presence du gerant il dispose tout les droits
-                        
-                        //affecttatio du nom utilisateur a la page acceuil
-                        fe.setname_user(user.getNom());
-                        fe.setStatut(user.getType());
-                        fe.setVisible(true);
-                        //jconnection.dispose();
-                    } catch (Exception ex) {
-                        Logger.getLogger(vue_connection.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                  }
-                   else{
-                       JOptionPane.showMessageDialog(null, "pas utilisateur correspondant");
-                   }
-        }
+            connection();
     }//GEN-LAST:event_connectionActionPerformed
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+          switch(evt.getKeyCode()){
+            case KeyEvent.VK_ENTER:
+                connection();
+                break;
+            default:
+                break;
+          }
+    }//GEN-LAST:event_passwordKeyPressed
+
+    private void loginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginKeyPressed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+          switch(evt.getKeyCode()){
+            case KeyEvent.VK_ENTER:
+                connection();
+                break;
+            default:
+                break;
+          }
+    }//GEN-LAST:event_loginKeyPressed
 
     /**
      * @param args the command line arguments
@@ -299,5 +288,59 @@ public class vue_connection extends javax.swing.JDialog {
     private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
     
+    public void connection(){
+    
+        String login=this.login.getText();
+        String password=this.password.getText();
+        if(login.length()==0||password.length()==0){
+                JOptionPane.showMessageDialog(null, "veuillez remplir tout les champs");
+        }
+        else{
+                Acteur acteur=new Acteur();
+                Utilisateur user=acteur.connection(login, password);
+                   if(user!=null){
+                    try {
+                        this.dispose();
+                        page_acceuil1 fe=new page_acceuil1();
+                        
+                      //si on est en presence du vendeur
+                        if(user.getType().equals("vendeur")){
+                            fe.getClient1().setEnabled(false);
+                            fe.getUtilisateur().setEnabled(false);
+                            fe.getEntree().setEnabled(false);
+                            fe.getProduit().setEnabled(false);
+                            fe.getDepense().setEnabled(false);
+                            fe.getFournisseur().setEnabled(false);
+                            fe.getMenu_nouveau_achat().setEnabled(false);
+                            
+                        }
+                        //en presence du magasinier
+                        else if(user.getType().equals("magasinier")){
+                             fe.getClient1().setEnabled(false);
+                            fe.getUtilisateur().setEnabled(false);
+                            fe.getProduit().setEnabled(false);
+                            fe.getDepense().setEnabled(false);
+                            fe.getVente().setEnabled(false);
+                            fe.getFournisseur().setEnabled(false);
+                            //on desactive les menus
+                            fe.getMenu_nouvelle_vente().setEnabled(false);
+                        }
+                        //sinon en presence du gerant il dispose tout les droits
+                        
+                        //affecttatio du nom utilisateur a la page acceuil
+                        fe.setname_user(user.getNom());
+                        fe.setStatut(user.getType());
+                        fe.setVisible(true);
+                        //jconnection.dispose();
+                    } catch (Exception ex) {
+                        Logger.getLogger(vue_connection.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                  }
+                   else{
+                       JOptionPane.showMessageDialog(null, "pas utilisateur correspondant");
+                   }
+        }
+    
+    }
       
 }

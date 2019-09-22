@@ -1,17 +1,19 @@
 package com.classes.pack;
 
+import java.sql.Date;
+
 public class Depense {
 	private int numero_dep;
 	private String type_dep;
 	private String nature;
 	private float montant;
-	private String date_dep;
+	private Date date_dep;
 	
 	public Depense(){}
-	public Depense(int numero_dep, String type_dep, String nature,
-			float montant, String date_dep) {
+	public Depense( String type_dep, String nature,
+			float montant, Date date_dep) {
 		super();
-		this.numero_dep = numero_dep;
+		
 		this.type_dep = type_dep;
 		this.nature = nature;
 		this.montant = montant;
@@ -41,11 +43,14 @@ public class Depense {
 	public void setMontant(float montant) {
 		this.montant = montant;
 	}
-	public String getDate_dep() {
-		return date_dep;
-	}
-	public void setDate_dep(String date_dep) {
-		this.date_dep = date_dep;
-	}
+
+    public Date getDate_dep() {
+        return date_dep;
+    }
+
+    public void setDate_dep(Date date_dep) {
+        this.date_dep = date_dep;
+    }
+	
 	 
 }

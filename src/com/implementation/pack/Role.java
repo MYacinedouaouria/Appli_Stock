@@ -16,6 +16,7 @@ import com.classes.pack.Facture;
 import com.classes.pack.Fournisseur;
 import com.classes.pack.Produit;
 import com.classes.pack.SingletonConnecction;
+import com.classes.pack.stat_histogramme;
 import com.graphisme.pack.Admin;
 import com.vue.pack.depense;
 import java.text.DateFormat;
@@ -81,7 +82,7 @@ public class Role implements Admin {
 		try {
                     Connection co=SingletonConnecction.getConnexion();
                             
-			PreparedStatement ps=co.prepareStatement("insert into PRODUIT(NOM_CATEGORIE,NOM_PRO,PRI_UNI,QUANTITE,stock_alert) value(?,?,?,?,?,?)");
+			PreparedStatement ps=co.prepareStatement("insert into PRODUIT(NOM_CATEGORIE,NOM_PRO,PRI_UNI,QUANTITE,stock_alert) value(?,?,?,?,?)");
 			
 			ps.setString(1, p.getId_categorie());
 			ps.setString(2, p.getNom_produit());
@@ -93,7 +94,7 @@ public class Role implements Admin {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
                         return false;
 			
 		}
@@ -110,7 +111,7 @@ public class Role implements Admin {
 			ps.setInt(4, p.getQuantite());
 			ps.setFloat(3, p.getPrix_unitaire());
                         ps.setInt(5, p.getAlert());
-                        ps.setInt(7, p.getId_produit());
+                        ps.setInt(6, p.getId_produit());
 			ps.executeUpdate();
 			ps.close();
 		} catch (SQLException e) {
@@ -545,12 +546,13 @@ public class Role implements Admin {
                 p.setId_pror(this.recuperation_idpro(p.getNom_produit()));
 		try {
 			
-			ps=co.prepareStatement("insert into LIVRAISON value(NULL,?,?,?,?)");
+			ps=co.prepareStatement("insert into LIVRAISON value(NULL,?,?,?,?,?)");
 			
 			ps.setInt(1, p.getId_four());
 			ps.setInt(2, p.getId_pro());
 			ps.setDate(3, p.getDate());
-			ps.setFloat(4, p.getQte_com());
+                        ps.setFloat(4, p.getPrix_achat());
+			ps.setFloat(5, p.getQte_com());
 			
 			int i=ps.executeUpdate();
 			if(i>0){
@@ -592,12 +594,13 @@ public class Role implements Admin {
 	public boolean modifier_com_four(Commande_four cf) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=co.prepareStatement("update LIVRAISON set ID_FOURNISSEUR=?,ID_PRO=?,DATE_COM=?,QUANTITE=? where ID_COM=?");
+			PreparedStatement ps=co.prepareStatement("update LIVRAISON set ID_FOURNISSEUR=?,ID_PRO=?,DATE_COM=?,prix_achat=?,QUANTITE=? where ID_COM=?");
 			ps.setInt(1, cf.getId_four());
 			ps.setInt(2, cf.getId_pro());
 			ps.setDate(3, cf.getDate());
 			ps.setInt(4, cf.getQte_com());
-			ps.setInt(5, cf.getId_com());
+                        ps.setFloat(4, cf.getPrix_achat());
+			ps.setInt(6, cf.getId_com());
 			ps.executeUpdate();
 			ps.close();
                         return true;
@@ -625,6 +628,7 @@ public class Role implements Admin {
 				cf.setId_four(rs.getInt("id_fournisseur"));
 				cf.setDate(rs.getDate("date_com"));
 				cf.setNom_produit(rs.getString("nom_pro"));
+                                cf.setPrix_achat(rs.getFloat("prix_achat"));
 				cf.setQte_com(rs.getInt("quantite"));
 				cf.setNom_four(rs.getString("nom_fournisseur"));
 				cf.setAdresse(rs.getString("add_fournisseur"));
@@ -647,12 +651,12 @@ public class Role implements Admin {
 	public boolean ajouter_dep(Depense p) {
 		// TODO Auto-generated method stub
 		try {
-			PreparedStatement ps=co.prepareStatement("insert into depense value(?,?,?,?,?)");
-			ps.setInt(1, p.getNumero_dep());
-			ps.setString(2, p.getType_dep());
-			ps.setString(3, p.getNature());
-			ps.setFloat(4, p.getMontant());
-			ps.setString(5, p.getDate_dep());
+			PreparedStatement ps=co.prepareStatement("insert into depense(TYPE_DEPENSE,NATURE,MONTANT,DATE_DEP) value(?,?,?,?)");
+			
+			ps.setString(1, p.getType_dep());
+			ps.setString(2, p.getNature());
+			ps.setFloat(3, p.getMontant());
+			ps.setDate(4, p.getDate_dep());
 			ps.executeUpdate();
 			ps.close();
 			
@@ -686,7 +690,7 @@ public class Role implements Admin {
 			ps.setString(1, p.getType_dep());
 			ps.setString(2, p.getNature());
 			ps.setFloat(3, p.getMontant());
-			ps.setString(4, p.getDate_dep());
+			ps.setDate(4, p.getDate_dep());
 			ps.setInt(5, p.getNumero_dep());
 			ps.executeUpdate();
 			ps.close();
@@ -712,7 +716,7 @@ public class Role implements Admin {
 				p.setType_dep(rs.getString("TYPE_DEPENSE"));
 				p.setNature(rs.getString("NATURE"));
 				p.setMontant(rs.getFloat("MONTANT"));
-				p.setDate_dep(rs.getString("DATE_DEP"));
+				p.setDate_dep(rs.getDate("DATE_DEP"));
 				lp.add(p);
 			}
 			ps.close();
@@ -1194,9 +1198,7 @@ public class Role implements Admin {
     public boolean supprimer_client(Client c) {
         PreparedStatement ps;
 		try {
-			ps=co.prepareStatement("delete from COMMANDE_CLI where ID_CLIENT=?" );
-			ps.setInt(1, c.getId_client());
-			ps.executeUpdate();
+			
 			ps=co.prepareStatement("delete from CLIENT where ID_CLIENT=?" );
 			ps.setInt(1, c.getId_client());
 			ps.executeUpdate();
@@ -1510,6 +1512,37 @@ public class Role implements Admin {
 		}
     }
 
-	
+    @Override
+    public List<stat_histogramme> bilan(String critere) {
+            List<stat_histogramme> lsh=new ArrayList<stat_histogramme>();
+            stat_histogramme sh;
+            PreparedStatement ps;
+            try {
+                
+                if(critere.equals("mois")){
+                    Date dernier_mois=new Date();
+                    Date premier_mois =new Date(dernier_mois.getYear(), 1, dernier_mois.getDate());
+                    //convertion de la date en String
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String d1 = dateFormat.format(dernier_mois);
+                String d2 = dateFormat.format(premier_mois);
+                    
+                         ps=co.prepareStatement("SELECT distinct month(date_fac) as mois,SUM(tv) from regroupage_date group by mois");
+                        
+                }
+                else{
+                     ps=co.prepareStatement("SELECT date_fac,SUM(tv) from regroupage_date group by date_fac;");
+                }
+                ResultSet rs=ps.executeQuery();
+                        while(rs.next()){
+                            lsh.add(new stat_histogramme(rs.getString("mois"), rs.getFloat("SUM(tv)")));
+                        }
+            } catch (SQLException ex) {
+                Logger.getLogger(Role.class.getName()).log(Level.SEVERE, null, ex);
+            }
+              return lsh;
+    }
+
+
 
 }

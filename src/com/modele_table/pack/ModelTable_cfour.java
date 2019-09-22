@@ -16,7 +16,7 @@ public class ModelTable_cfour extends AbstractTableModel{
 		
 		public List<Commande_four> l_e=new ArrayList<Commande_four>();
 		//public String[] entete={"MATRICULE","NOM","PRENOM","NOM_FILIERE","NIVEAU","AGE","SEXE"};
-		public String [] title={"NUMERO","NOM FOURNISSEUR", "NOM PRODUIT", "QUANTITE ACHAT", "DATE"};
+		public String [] title={"NUMERO","NOM FOURNISSEUR", "NOM PRODUIT", "PRIX_ACHAT","QUANTITE ACHAT", "DATE"};
 		public ModelTable_cfour(){
 			super();
 			
@@ -54,9 +54,11 @@ public class ModelTable_cfour extends AbstractTableModel{
                         case 2:
                                 return l_e.get(i).getNom_produit();
 			
-                        case 3:
-				return l_e.get(i).getQte_com();
                         case 4:
+				return l_e.get(i).getQte_com();
+                        case 3:
+				return l_e.get(i).getPrix_achat();
+                        case 5:
 				return l_e.get(i).getDate().toString();
                         
 			default:

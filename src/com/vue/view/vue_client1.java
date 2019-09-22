@@ -6,6 +6,7 @@
 package com.vue.view;
 
 import com.classes.pack.Client;
+import com.classes.pack.Controle;
 import com.vue.pack.*;
 import com.classes.pack.SingletonConnecction;
 import com.implementation.pack.Role;
@@ -25,8 +26,10 @@ import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -552,10 +555,12 @@ public class vue_client1 extends javax.swing.JPanel {
     private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
         // TODO add your handling code here:
         Client c=new Client();
+       
         try{
-
-            //recuperation des valeures dans les champs de saisie
-
+            //recuperation des valeures dans les champs de saisie4
+            JTextField[] tj={nom_client,add_cli,ville};
+            JFormattedTextField[] jf={tel_cli};
+            if(Controle.verification_textfield(tj)&& Controle.verification_formatedfields(jf)){
             c.setNom_client(nom_client.getText());
             c.setAddresse(add_cli.getText());
             c.setTelephone(tel_cli.getText());
@@ -573,10 +578,16 @@ public class vue_client1 extends javax.swing.JPanel {
             else{
                 jop.showMessageDialog(null, "code du client deja existant","erreur d'ajout",JOptionPane.ERROR_MESSAGE);
             }
+            }
+            else{
+                 jop.showMessageDialog(null, "remplir tout vos champs","erreur de remplissage",JOptionPane.ERROR_MESSAGE);
+            }
         }
-        catch(NumberFormatException n){
-            jop.showMessageDialog(null, "veuillez remplir tout vos chamos","warming",JOptionPane.WARNING_MESSAGE);
+        catch(NumberFormatException p){
+            p.getMessage();
         }
+        
+      
 
     }//GEN-LAST:event_ajouterActionPerformed
 
@@ -822,5 +833,5 @@ public class vue_client1 extends javax.swing.JPanel {
                 //il sagit d'une methode pour selectionner une seule ligne a la fois
                 table_client.setSelectionMode(0);
     }
-    
+     
 }

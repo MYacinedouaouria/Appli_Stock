@@ -123,6 +123,7 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         tous = new javax.swing.JRadioButton();
         l_total = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
+        but_histo = new javax.swing.JButton();
 
         acceuil.setBackground(new java.awt.Color(245, 240, 253));
         acceuil.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
@@ -412,6 +413,15 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         total.setToolTipText("");
         total.setOpaque(true);
 
+        but_histo.setBackground(new java.awt.Color(67, 104, 104));
+        but_histo.setForeground(java.awt.Color.white);
+        but_histo.setText("VOIR HISTOGRAMME");
+        but_histo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_histoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -438,6 +448,8 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
                         .addComponent(mois)
                         .addGap(18, 18, 18)
                         .addComponent(tous)
+                        .addGap(94, 94, 94)
+                        .addComponent(but_histo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(l_total, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -471,8 +483,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
                         .addComponent(jour, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(semaine, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(mois, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tous, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(tous, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(but_histo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -629,10 +642,16 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         
     }//GEN-LAST:event_tousActionPerformed
 
+    private void but_histoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_histoActionPerformed
+       voir_histogramme vh=new voir_histogramme(null,true);
+       vh.setVisible(true);
+    }//GEN-LAST:event_but_histoActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceuil;
+    private javax.swing.JButton but_histo;
     private com.toedter.calendar.JDateChooser date1;
     private com.toedter.calendar.JDateChooser date2;
     private javax.swing.JButton imprimer;

@@ -23,6 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.ComboBoxModel;
@@ -58,6 +59,7 @@ public class vue_depense1 extends javax.swing.JPanel {
         selection_recher.setAutoscrolls(true);
         
         table_depense.getTableHeader().setDefaultRenderer(new TableHeader());
+        table_depense.setModel(model);
  
     }
 
@@ -94,14 +96,10 @@ public class vue_depense1 extends javax.swing.JPanel {
         tool_user = new javax.swing.JButton();
         label2 = new java.awt.Label();
         jPanel2 = new javax.swing.JPanel();
-        l_dep = new javax.swing.JLabel();
         l_type = new javax.swing.JLabel();
         l_nature = new javax.swing.JLabel();
         l_montant = new javax.swing.JLabel();
-        l_date = new javax.swing.JLabel();
         actualiser = new javax.swing.JButton();
-        date = new javax.swing.JFormattedTextField();
-        id_dep = new javax.swing.JFormattedTextField();
         ajouter = new javax.swing.JButton();
         nature = new javax.swing.JTextField();
         type_dep = new javax.swing.JComboBox<>();
@@ -358,9 +356,6 @@ public class vue_depense1 extends javax.swing.JPanel {
         label2.setForeground(new java.awt.Color(97, 117, 158));
         label2.setText("Formulaire Ajout ");
 
-        l_dep.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        l_dep.setText("N° depense");
-
         l_type.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         l_type.setText("type ");
 
@@ -369,9 +364,6 @@ public class vue_depense1 extends javax.swing.JPanel {
 
         l_montant.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         l_montant.setText("Montant");
-
-        l_date.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        l_date.setText("Date");
 
         actualiser.setBackground(new java.awt.Color(245, 240, 253));
         actualiser.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -382,18 +374,6 @@ public class vue_depense1 extends javax.swing.JPanel {
                 actualiserActionPerformed(evt);
             }
         });
-
-        date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        date.setText("date");
-        date.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateActionPerformed(evt);
-            }
-        });
-
-        id_dep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
-        id_dep.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         ajouter.setBackground(new java.awt.Color(245, 240, 253));
         ajouter.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -415,7 +395,7 @@ public class vue_depense1 extends javax.swing.JPanel {
             }
         });
 
-        montant.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        montant.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#"))));
 
         modifier.setBackground(new java.awt.Color(245, 240, 253));
         modifier.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -436,15 +416,9 @@ public class vue_depense1 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(l_type)
-                            .addComponent(l_dep, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(id_dep, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(3, 3, 3))
-                            .addComponent(type_dep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(l_type)
+                        .addGap(108, 108, 108)
+                        .addComponent(type_dep, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(actualiser, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -455,27 +429,17 @@ public class vue_depense1 extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(l_nature, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(l_montant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(l_date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(montant, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(nature)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(date)))))
+                            .addComponent(l_montant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(montant, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(nature))))
                 .addGap(3, 3, 3))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_dep, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id_dep, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_type, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(type_dep, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -489,11 +453,7 @@ public class vue_depense1 extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(l_montant, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(montant, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_date, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(75, 75, 75)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(actualiser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ajouter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -613,15 +573,11 @@ public class vue_depense1 extends javax.swing.JPanel {
     private void actualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualiserActionPerformed
         // TODO add your handling code here:
         //ici on met tous les formulaire � vide
-        id_dep.setText("");
+        
         nature.setText("");
         montant.setText("");
-        date.setText("");
+       
     }//GEN-LAST:event_actualiserActionPerformed
-
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
 
     private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
         // TODO add your handling code here:
@@ -629,12 +585,14 @@ public class vue_depense1 extends javax.swing.JPanel {
         try{
 
             //recuperation des valeures dans les champs de saisie
-            c.setNumero_dep(Integer.parseInt(id_dep.getText()));
-            c.setType_dep(type_dep.getName());
+           
+            c.setType_dep((String)type_dep.getSelectedItem());
             c.setNature(nature.getText());
-            c.setMontant((float) montant.getValue());
-            c.setDate_dep(date.getText());
-
+            c.setMontant(Float.parseFloat(montant.getText()));
+            //recuperation de la date
+            Date curdate=new Date();
+            java.sql.Date datesql=new java.sql.Date(curdate.getYear(),curdate.getMonth(), curdate.getDate());
+            c.setDate_dep(datesql);
             //operation ajout dans la bd et dans les tables
             if(r.ajouter_dep(c)){
                 lp.add(c);
@@ -719,15 +677,11 @@ public class vue_depense1 extends javax.swing.JPanel {
     private javax.swing.JButton acceuil;
     private javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
-    private javax.swing.JFormattedTextField date;
-    private javax.swing.JFormattedTextField id_dep;
     private javax.swing.JButton imprimer;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar2;
-    private javax.swing.JLabel l_date;
-    private javax.swing.JLabel l_dep;
     private javax.swing.JLabel l_montant;
     private javax.swing.JLabel l_nature;
     private javax.swing.JLabel l_recherpar;
