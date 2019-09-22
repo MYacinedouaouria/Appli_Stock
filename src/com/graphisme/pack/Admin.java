@@ -80,8 +80,8 @@ public interface Admin {
                 void ajouter_listcom_four(List<Commande_four> lc);
 // differents traitements sur la gestion des depenses
 		boolean ajouter_dep(Depense dep);
-		void supprimer_dep(Depense dep);
-		void modifier_dep(Depense dep);
+		boolean supprimer_dep(Depense dep);
+		boolean modifier_dep(Depense dep);
 		List<Depense> affiche_dep();
 		//recuperer les quantites des produits selon leur niveau(bas,nil,eleve)
 		int quantite_stock(String niveau);

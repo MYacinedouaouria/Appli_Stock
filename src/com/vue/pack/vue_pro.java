@@ -68,7 +68,7 @@ public class vue_pro extends javax.swing.JPanel {
         table_produit.getColumnModel().getColumn(5).setCellRenderer(new BeauteQteProduit());
         // init_categorie();
         
-         autoSuggestor = new AutoSuggestor(valeur_recher, frame, null, Color.gray, Color.white, Color.red, 0.75f) {
+         autoSuggestor = new AutoSuggestor(valeur_recher, frame, null, Color.black, Color.white, Color.red, 0.75f) {
             @Override
             boolean wordTyped(String typedWord) {
             	Role r=new Role();

@@ -121,6 +121,11 @@ public class vue_depense1 extends javax.swing.JPanel {
         supprimer.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         supprimer.setForeground(new java.awt.Color(255, 0, 0));
         supprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/sup.png"))); // NOI18N
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
 
         valeur_recher.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
@@ -374,6 +379,8 @@ public class vue_depense1 extends javax.swing.JPanel {
         
         nature.setText("");
         montant.setText("");
+        actualise_table();
+       actualise_panel();
        
     }//GEN-LAST:event_actualiserActionPerformed
 
@@ -417,11 +424,40 @@ public class vue_depense1 extends javax.swing.JPanel {
     }//GEN-LAST:event_ajouterActionPerformed
 
     private void type_depActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_depActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:echech
     }//GEN-LAST:event_type_depActionPerformed
 
     private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
         // TODO add your handling code here:
+        try{
+            Depense c=new Depense();
+            int selection=table_depense.getSelectedRow();
+            c=model.l_e.get(selection);
+            //recuperation des valeures dans les champs de saisie
+
+            c.setType_dep((String)type_dep.getSelectedItem());
+            c.setNature(nature.getText());
+            c.setMontant(Float.parseFloat(montant.getText()));
+            
+            //operation ajout dans la bd et dans les tables
+            int confirmation=jop.showConfirmDialog(null, "voulez vous vraiment modifier cette depense: " +c.getNumero_dep(),"confirmation de modification",JOptionPane.YES_NO_CANCEL_OPTION);
+            if(confirmation==0)
+            if(r.modifier_dep(c)){
+                actualise_table();
+                jop.showMessageDialog(null, "modification reussie","good",JOptionPane.INFORMATION_MESSAGE);
+                actualise_panel();
+            }
+            else{
+                new errorClasse(null, true, "echec de modification","echec");
+            }
+        }
+        catch(NumberFormatException n){
+            jop.showMessageDialog(null, "veuillez remplir tout vos chamos","warming",JOptionPane.WARNING_MESSAGE);
+        }
+        catch(IndexOutOfBoundsException i){
+            jop.showMessageDialog(null, "aucune selection de client","selection requise",JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_modifierActionPerformed
 
     private void rechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechercherActionPerformed
@@ -434,13 +470,41 @@ public class vue_depense1 extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_selection_recherActionPerformed
 
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        // TODO add your handling code here:
+         try{
+            int selection=table_depense.getSelectedRow();
+            Depense c=new Depense();
+            c=model.l_e.get(selection);
+            int confirmation=jop.showConfirmDialog(null, "voulez vous vraiment supprimer cette depense","confirmation de suppression",JOptionPane.YES_NO_CANCEL_OPTION);
+            if(confirmation==0){
+                if(r.supprimer_dep(c)){
+
+                    model.l_e.remove(c);
+                    jop.showMessageDialog(null,"suppression reussie","suppression",JOptionPane.INFORMATION_MESSAGE);
+                    actualise_panel();
+                }
+                else{
+                    jop.showMessageDialog(null,"erreur de suppression","error",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+        catch(IndexOutOfBoundsException i){
+            jop.showMessageDialog(null, "selectionner la depense","selection requise",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_supprimerActionPerformed
+
     //la classe interne remplissage
     public class remplissage implements MouseListener{
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			
+			int selection=table_depense.getSelectedRow();
+			Depense c=model.l_e.get(selection);
+			nature.setText(c.getNature());
+			montant.setText(""+c.getMontant());
+			type_dep.setSelectedItem((String)c.getType_dep().trim());
 		}
 
 		@Override
@@ -504,7 +568,10 @@ public class vue_depense1 extends javax.swing.JPanel {
     }
     //on actualise le tableau en affichant tous les produits
     public void actualise_table(){
-    	
+    	model.l_e=r.affiche_dep();
+		table_depense.setModel(model);
+                //il sagit d'une methode pour selectionner une seule ligne a la fois
+                
     }
     public ArrayList<String> recherche() {
 		// TODO Auto-generated method stub

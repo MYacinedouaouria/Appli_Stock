@@ -669,7 +669,7 @@ public class Role implements Admin {
 	}
 
 	@Override
-	public void supprimer_dep(Depense p) {
+	public boolean supprimer_dep(Depense p) {
 		// TODO Auto-generated method stub
 		try {
 			PreparedStatement ps=co.prepareStatement("delete from depense where NUM_DEPENSE=?" );
@@ -679,11 +679,14 @@ public class Role implements Admin {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+                        return false;
+                        
 		}
+                return true;
 	}
 
 	@Override
-	public void modifier_dep(Depense p) {
+	public boolean modifier_dep(Depense p) {
 		// TODO Auto-generated method stub
 		try {
 			PreparedStatement ps=co.prepareStatement("update depense set TYPE_DEPENSE=?,NATURE=?,MONTANT=?,DATE_DEP=? where NUM_DEPENSE=?");
@@ -697,7 +700,9 @@ public class Role implements Admin {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+                        return false;
 		}
+                return true;
 	}
 
 	@Override

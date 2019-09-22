@@ -6,7 +6,9 @@
 package com.vue.pack;
 
 import com.vue.view.barre_outil;
+import com.vue.view.journal_achat_stat1;
 import com.vue.view.journal_com_four1;
+import com.vue.view.journal_dep_stat;
 import com.vue.view.journal_facture;
 import com.vue.view.journal_vente1;
 import com.vue.view.journal_vente_stat1;
@@ -73,6 +75,8 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     journal_facture cm_cli=new journal_facture();
     //journal_vente1 cm_cli=new journal_vente1();
     journal_vente_stat1 journal_vente;
+    journal_achat_stat1 journal_achat;
+    journal_dep_stat journal_depense;
     //Commande_fournisseur cm_four=new Commande_fournisseur();
     
     journal_com_four1 cm_four=new journal_com_four1();
@@ -88,6 +92,8 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         container=this;
         
          journal_vente=new journal_vente_stat1();
+         journal_achat=new journal_achat_stat1();
+         journal_depense=new journal_dep_stat();
         //propriete de la fenetre
         page_acc=this;
         this.setResizable(true);
@@ -114,6 +120,8 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         jPanel3.add(cli,"client");
         jPanel3.add(user,"user");
          jPanel3.add(journal_vente,"journal_vente");
+         jPanel3.add(journal_achat,"bilan_achat");
+         jPanel3.add(journal_depense,"bilan_dep");
         //methode pour la gestion du boutton acceuil
         
         //autres proprietes de la fenetre

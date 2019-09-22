@@ -98,7 +98,7 @@ public class Produit {
             PreparedStatement ps;
 
             ps = co.prepareStatement("select nom_pro from PRODUIT where nom_pro like ?");
-            ps.setString(1, val + "%");
+            ps.setString(1, "%"+val + "%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 

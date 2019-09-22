@@ -32,6 +32,7 @@ public class Journal_vente {
     private float total_vendu;
     private float total_final;
    
+    
     public List<Journal_vente> liste_vente;
 
     public Journal_vente(int id_pro, String nom_pro, String cate,int quantite_vendues, float total_vendu) {
@@ -192,6 +193,37 @@ SingletonConnecction sg=new SingletonConnecction();
                 }
                 else{
                      ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f where p.id_pro=c.id_pro and c.id_fac=f.id_fac group by p.id_pro order by qv asc");
+                }
+                 
+         
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				jv=new Journal_vente(rs.getInt("c.id_pro"),rs.getString("p.nom_pro"),rs.getString("p.nom_categorie"), rs.getInt("qv"), rs.getFloat("tv"));
+                                lv.add(jv);
+                        }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+     
+     
+     this.liste_vente=lv;
+}
+   //JOURNAL DES VENTES
+  public  void   vente_date(String filtrage,String type) throws SQLException, ParseException{
+     
+     List<Journal_vente> lv=new ArrayList<Journal_vente>();
+		Journal_vente jv=null;
+     
+     try {
+             PreparedStatement ps;
+                if(filtrage!="tous"){
+                    ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.prix_achat*c.quantite) as tv from produit  as p,livraison as c  where p.id_pro=c.id_pro AND c.date_com BETWEEN ? AND ?  group by p.id_pro order by qv asc");
+                     ps.setString(1,this.getDate1());
+                     ps.setString(2, this.getDate2());
+                }
+                else{
+                     ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.prix_achat*c.quantite) as tv from produit  as p,livraison as c where p.id_pro=c.id_pro  group by p.id_pro order by qv asc");
                 }
                  
          

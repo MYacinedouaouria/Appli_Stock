@@ -320,6 +320,7 @@ public class journal_vente1 extends javax.swing.JPanel {
 
     private void ajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterActionPerformed
         // TODO add your handling code here:
+     
         vue_choisir_client ch=new vue_choisir_client(null, true);
         ch.setVisible(true);
     }//GEN-LAST:event_ajouterActionPerformed

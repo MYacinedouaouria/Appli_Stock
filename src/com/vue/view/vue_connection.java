@@ -33,6 +33,7 @@ public class vue_connection extends javax.swing.JDialog {
      */
     
     JDialog jconnection;
+    public static Utilisateur user;
     public vue_connection(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         jconnection=this;
@@ -297,7 +298,7 @@ public class vue_connection extends javax.swing.JDialog {
         }
         else{
                 Acteur acteur=new Acteur();
-                Utilisateur user=acteur.connection(login, password);
+                 user=acteur.connection(login, password);
                    if(user!=null){
                     try {
                         this.dispose();

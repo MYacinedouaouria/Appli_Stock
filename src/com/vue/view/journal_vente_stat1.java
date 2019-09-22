@@ -75,7 +75,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
        
          jv.setPeriode("jour");
          jv.recup_date();
-         jv.vente_date("tous");
+         
+            jv.vente_date("tous");
+        
         affichage_resultat();
         
         table_journal.getTableHeader().setDefaultRenderer(new TableHeader());
@@ -94,7 +96,7 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
+        titre_stat = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         imprimer = new javax.swing.JButton();
         vider = new javax.swing.JButton();
@@ -114,10 +116,10 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         total = new javax.swing.JLabel();
         but_histo = new javax.swing.JButton();
 
-        label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        label1.setForeground(new java.awt.Color(97, 117, 158));
-        label1.setText("BILAN DES VENTES");
+        titre_stat.setAlignment(java.awt.Label.CENTER);
+        titre_stat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        titre_stat.setForeground(new java.awt.Color(97, 117, 158));
+        titre_stat.setText("BILAN DES VENTES");
 
         imprimer.setBackground(new java.awt.Color(245, 240, 253));
         imprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier2.png"))); // NOI18N
@@ -291,7 +293,7 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(titre_stat, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(319, 319, 319))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(l_recherpar2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,7 +322,7 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titre_stat, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -361,8 +363,10 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
                 String d1 = dateFormat.format(date1);
                 String d2 = dateFormat.format(date2);
                 jv.setPeriode(d1, d2);
-
-                jv.vente_date("periode");
+                 
+                    jv.vente_date("periode");
+                 
+                
                 affichage_resultat();
 
             }
@@ -379,7 +383,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
             try {
                 jv.setPeriode("jour");
                 jv.recup_date();
-                jv.vente_date("periode");
+                
+                    jv.vente_date("periode");
+                
                 affichage_resultat();
             } catch (Exception ex) {
                JOptionPane.showMessageDialog(null, "probleme rencontre");
@@ -399,7 +405,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         try {
                 jv.setPeriode("semaine");
                 jv.recup_date();
-                jv.vente_date("periode");
+              
+                    jv.vente_date("periode");
+                
                 affichage_resultat();
             } catch (Exception ex) {
                JOptionPane.showMessageDialog(null, "probleme rencontre");
@@ -419,7 +427,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         try {
                 jv.setPeriode("mois");
                 jv.recup_date();
-                jv.vente_date("periode");
+               
+                    jv.vente_date("periode");
+               
                 affichage_resultat();
             } catch (Exception ex) {
                JOptionPane.showMessageDialog(null, "probleme rencontre");
@@ -437,7 +447,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         try {
-                jv.vente_date("tous");
+                
+                    jv.vente_date("tous");
+               
                 affichage_resultat();
             } catch (Exception ex) {
                JOptionPane.showMessageDialog(null, "probleme rencontre");
@@ -453,7 +465,7 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton but_histo;
+    public static javax.swing.JButton but_histo;
     private com.toedter.calendar.JDateChooser date1;
     private com.toedter.calendar.JDateChooser date2;
     private javax.swing.JButton imprimer;
@@ -464,17 +476,17 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
     private javax.swing.JLabel l_recherpar1;
     private javax.swing.JLabel l_recherpar2;
     private javax.swing.JLabel l_total;
-    private java.awt.Label label1;
     private javax.swing.JRadioButton mois;
     private javax.swing.JButton rechercher;
     private javax.swing.JRadioButton semaine;
     private javax.swing.JTable table_journal;
+    public static java.awt.Label titre_stat;
     private javax.swing.JLabel total;
     private javax.swing.JRadioButton tous;
     private javax.swing.JButton vider;
     // End of variables declaration//GEN-END:variables
 
-       
+   
     
     //methode pour actualiser le panel
      public void actualise_panel(){
@@ -508,7 +520,7 @@ else if(d2.after(curDate) && !d1.after(curDate)){
      }
      
      
-     void affichage_resultat() throws SQLException, ParseException{
+     public void affichage_resultat() throws SQLException, ParseException{
                         
                         mj.lv=jv.getListe_vente();
          

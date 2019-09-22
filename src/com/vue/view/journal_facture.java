@@ -67,6 +67,9 @@ public class journal_facture extends javax.swing.JPanel {
         
          //on ecoute le combobox de recherche
          type_recherche.addItemListener(new Type_recherche());
+         
+         //on desactive la vente pour le moment
+         ajouter.setEnabled(false);
     }
 
     /**

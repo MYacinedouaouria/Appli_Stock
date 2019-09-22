@@ -162,6 +162,9 @@
               <Image iconType="3" name="/com/vue/view/image_app/sup.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supprimerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="valeur_recher">
           <Properties>

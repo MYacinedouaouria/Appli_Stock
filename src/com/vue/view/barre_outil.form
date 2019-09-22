@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="acceuil" min="-2" pref="99" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
               <Component id="tool_produit" min="-2" pref="116" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="tool_client" min="-2" pref="112" max="-2" attributes="0"/>
@@ -28,15 +28,19 @@
               <Component id="tool_vente" min="-2" pref="113" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Component id="tool_entree" min="-2" pref="113" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="tool_etat_vente" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Component id="tool_etat_stock" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Component id="tool_depense" min="-2" pref="104" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-              <Component id="tool_user" min="-2" pref="113" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="tool_etat_vente2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="tool_etat_dep" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="tool_etat_stock" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tool_depense" min="-2" pref="104" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tool_user" min="-2" pref="113" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,27 +49,22 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tool_etat_vente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tool_etat_stock" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tool_depense" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tool_user" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="tool_etat_vente" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tool_etat_stock" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tool_depense" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tool_user" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tool_etat_dep" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tool_etat_vente2" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="acceuil" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tool_vente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tool_four" alignment="1" max="32767" attributes="0"/>
-                          <Component id="tool_produit" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tool_client" alignment="1" max="32767" attributes="0"/>
-                          <Component id="tool_entree" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="acceuil" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tool_vente" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tool_four" alignment="1" max="32767" attributes="0"/>
+                  <Component id="tool_produit" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tool_client" alignment="1" max="32767" attributes="0"/>
+                  <Component id="tool_entree" alignment="0" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,7 +81,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/ACC_pro.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="produit"/>
+        <Property name="toolTipText" type="java.lang.String" value="PRODUIT"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -105,7 +104,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/CLI.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="client"/>
+        <Property name="toolTipText" type="java.lang.String" value="CLIENT"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -128,7 +127,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/FOURN.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="fournisseur"/>
+        <Property name="toolTipText" type="java.lang.String" value="FOURNISSEUR"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -151,7 +150,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/vente.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="vente"/>
+        <Property name="toolTipText" type="java.lang.String" value="VENTE"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -174,7 +173,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/email_send.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="client"/>
+        <Property name="toolTipText" type="java.lang.String" value="ACHAT"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -197,7 +196,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/DEPENSE.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="etat des ventes"/>
+        <Property name="toolTipText" type="java.lang.String" value="BILAN DES VENTES"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -220,7 +219,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/ET3.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="etat des stocks"/>
+        <Property name="toolTipText" type="java.lang.String" value="ETATS DES STOCKS"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -243,7 +242,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/DEPEN.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="depense"/>
+        <Property name="toolTipText" type="java.lang.String" value="DEPENSES"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -266,7 +265,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/vue/view/image_app/CLI.png"/>
         </Property>
-        <Property name="toolTipText" type="java.lang.String" value="utilisateurs"/>
+        <Property name="toolTipText" type="java.lang.String" value="UTILISATEURS"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
@@ -295,6 +294,52 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acceuilActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="tool_etat_dep">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fd" green="f0" red="f5" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="9e" green="75" red="61" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/vue/view/image_app/DEP.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="BILAN DES DEPENSES"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="verticalTextPosition" type="int" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tool_etat_depActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="tool_etat_vente2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fd" green="f0" red="f5" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="9e" green="75" red="61" type="rgb"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/vue/view/image_app/logo_vente.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="BILAN DES ACHATS"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="verticalTextPosition" type="int" value="3"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tool_etat_vente2ActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
