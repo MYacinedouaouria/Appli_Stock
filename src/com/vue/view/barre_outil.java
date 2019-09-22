@@ -5,6 +5,8 @@
  */
 package com.vue.view;
 
+import com.vue.pack.page_acceuil1;
+
 /**
  *
  * @author DELL
@@ -27,7 +29,6 @@ public class barre_outil extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar2 = new javax.swing.JToolBar();
         tool_produit = new javax.swing.JButton();
         tool_client = new javax.swing.JButton();
         tool_four = new javax.swing.JButton();
@@ -37,11 +38,11 @@ public class barre_outil extends javax.swing.JPanel {
         tool_etat_stock = new javax.swing.JButton();
         tool_depense = new javax.swing.JButton();
         tool_user = new javax.swing.JButton();
+        acceuil = new javax.swing.JButton();
 
-        jToolBar2.setBorder(null);
-
+        tool_produit.setBackground(new java.awt.Color(245, 240, 253));
         tool_produit.setForeground(new java.awt.Color(97, 117, 158));
-        tool_produit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool.png"))); // NOI18N
+        tool_produit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/ACC_pro.png"))); // NOI18N
         tool_produit.setToolTipText("produit");
         tool_produit.setFocusable(false);
         tool_produit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -51,10 +52,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_produitActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_produit);
 
+        tool_client.setBackground(new java.awt.Color(245, 240, 253));
         tool_client.setForeground(new java.awt.Color(97, 117, 158));
-        tool_client.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_cli.png"))); // NOI18N
+        tool_client.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/CLI.png"))); // NOI18N
         tool_client.setToolTipText("client");
         tool_client.setFocusable(false);
         tool_client.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -64,10 +65,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_clientActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_client);
 
+        tool_four.setBackground(new java.awt.Color(245, 240, 253));
         tool_four.setForeground(new java.awt.Color(97, 117, 158));
-        tool_four.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_four.png"))); // NOI18N
+        tool_four.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/FOURN.png"))); // NOI18N
         tool_four.setToolTipText("fournisseur");
         tool_four.setFocusable(false);
         tool_four.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -77,10 +78,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_fourActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_four);
 
+        tool_vente.setBackground(new java.awt.Color(245, 240, 253));
         tool_vente.setForeground(new java.awt.Color(97, 117, 158));
-        tool_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_vente.png"))); // NOI18N
+        tool_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/vente.png"))); // NOI18N
         tool_vente.setToolTipText("vente");
         tool_vente.setFocusable(false);
         tool_vente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -90,10 +91,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_venteActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_vente);
 
+        tool_entree.setBackground(new java.awt.Color(245, 240, 253));
         tool_entree.setForeground(new java.awt.Color(97, 117, 158));
-        tool_entree.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_entre.png"))); // NOI18N
+        tool_entree.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/email_send.png"))); // NOI18N
         tool_entree.setToolTipText("client");
         tool_entree.setFocusable(false);
         tool_entree.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -103,10 +104,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_entreeActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_entree);
 
+        tool_etat_vente.setBackground(new java.awt.Color(245, 240, 253));
         tool_etat_vente.setForeground(new java.awt.Color(97, 117, 158));
-        tool_etat_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_etat_vente.png"))); // NOI18N
+        tool_etat_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/DEPENSE.png"))); // NOI18N
         tool_etat_vente.setToolTipText("etat des ventes");
         tool_etat_vente.setFocusable(false);
         tool_etat_vente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -116,10 +117,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_etat_venteActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_etat_vente);
 
+        tool_etat_stock.setBackground(new java.awt.Color(245, 240, 253));
         tool_etat_stock.setForeground(new java.awt.Color(97, 117, 158));
-        tool_etat_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_etat_stock.png"))); // NOI18N
+        tool_etat_stock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/ET3.png"))); // NOI18N
         tool_etat_stock.setToolTipText("etat des stocks");
         tool_etat_stock.setFocusable(false);
         tool_etat_stock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -129,10 +130,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_etat_stockActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_etat_stock);
 
+        tool_depense.setBackground(new java.awt.Color(245, 240, 253));
         tool_depense.setForeground(new java.awt.Color(97, 117, 158));
-        tool_depense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_dep.png"))); // NOI18N
+        tool_depense.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/DEPEN.png"))); // NOI18N
         tool_depense.setToolTipText("depense");
         tool_depense.setFocusable(false);
         tool_depense.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -142,10 +143,10 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_depenseActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_depense);
 
+        tool_user.setBackground(new java.awt.Color(245, 240, 253));
         tool_user.setForeground(new java.awt.Color(97, 117, 158));
-        tool_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/tool_cli.png"))); // NOI18N
+        tool_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/CLI.png"))); // NOI18N
         tool_user.setToolTipText("utilisateurs");
         tool_user.setFocusable(false);
         tool_user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -155,27 +156,64 @@ public class barre_outil extends javax.swing.JPanel {
                 tool_userActionPerformed(evt);
             }
         });
-        jToolBar2.add(tool_user);
+
+        acceuil.setBackground(new java.awt.Color(245, 240, 253));
+        acceuil.setFont(new java.awt.Font("Algerian", 1, 24)); // NOI18N
+        acceuil.setForeground(new java.awt.Color(229, 9, 29));
+        acceuil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/acc.png"))); // NOI18N
+        acceuil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceuilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 893, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(acceuil, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250)
+                .addComponent(tool_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tool_client, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tool_four, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tool_vente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tool_entree, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tool_etat_vente)
+                .addGap(5, 5, 5)
+                .addComponent(tool_etat_stock)
+                .addGap(5, 5, 5)
+                .addComponent(tool_depense, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tool_user, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(96, 96, 96)
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(97, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tool_etat_vente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_etat_stock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_depense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(acceuil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_vente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_four, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_produit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_client, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_entree, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(19, 19, 19))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -224,17 +262,24 @@ public class barre_outil extends javax.swing.JPanel {
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "user");
     }//GEN-LAST:event_tool_userActionPerformed
 
+    private void acceuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceuilActionPerformed
+        // TODO add your handling code here:
+        page_acceuil1.container.setContentPane(page_acceuil1.getjPanel1());
+        page_acceuil1.container.repaint();
+        page_acceuil1.container.revalidate();
+    }//GEN-LAST:event_acceuilActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar jToolBar2;
-    private javax.swing.JButton tool_client;
-    private javax.swing.JButton tool_depense;
-    private javax.swing.JButton tool_entree;
-    private javax.swing.JButton tool_etat_stock;
-    private javax.swing.JButton tool_etat_vente;
-    private javax.swing.JButton tool_four;
-    private javax.swing.JButton tool_produit;
-    private javax.swing.JButton tool_user;
-    private javax.swing.JButton tool_vente;
+    public static javax.swing.JButton acceuil;
+    public static javax.swing.JButton tool_client;
+    public static javax.swing.JButton tool_depense;
+    public static javax.swing.JButton tool_entree;
+    public static javax.swing.JButton tool_etat_stock;
+    public static javax.swing.JButton tool_etat_vente;
+    public static javax.swing.JButton tool_four;
+    public static javax.swing.JButton tool_produit;
+    public static javax.swing.JButton tool_user;
+    public static javax.swing.JButton tool_vente;
     // End of variables declaration//GEN-END:variables
 }

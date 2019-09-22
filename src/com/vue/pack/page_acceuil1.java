@@ -5,6 +5,7 @@
  */
 package com.vue.pack;
 
+import com.vue.view.barre_outil;
 import com.vue.view.journal_com_four1;
 import com.vue.view.journal_facture;
 import com.vue.view.journal_vente1;
@@ -31,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,9 +82,10 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     JFrame page_acc;
     JToolBar toolbar=new JToolBar();
     JPanel jpere=new JPanel();
+    public static  JFrame container;
     public page_acceuil1() throws SQLException, ParseException, IOException {
         initComponents();
-        
+        container=this;
         
          journal_vente=new journal_vente_stat1();
         //propriete de la fenetre
@@ -94,10 +97,16 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         
          
         //ajout de mes panneaux dans le cari layouts
+        jpere.setLayout(new BoxLayout(jpere,BoxLayout.PAGE_AXIS));
+        jpere.add(new barre_outil());
+        jpere.add(jPanel3);
+        //pan2.setLayout(car);
+        
         jPanel3.setLayout(cl);
-        jPanel3.add(jPanel1,"prin");
-        jPanel3.add(et,"etat de stock");
+        //jPanel3.add(jPanel1,"prin");
+        
         jPanel3.add(jp,"produit");
+        jPanel3.add(et,"etat de stock");
         jPanel3.add(four,"fournisseur");
         jPanel3.add(cm_cli,"com_client");
         jPanel3.add(cm_four,"com_fournisseur");
@@ -106,7 +115,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         jPanel3.add(user,"user");
          jPanel3.add(journal_vente,"journal_vente");
         //methode pour la gestion du boutton acceuil
-        gestion_boutton_acceuil();
+        
         //autres proprietes de la fenetre
         this.setLocationRelativeTo(null);
        // jTextPane1.setText("EQUIPE TECHNIQUE: FRANK TCHATSEU LGNE" );
@@ -116,7 +125,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
        //jpere.add(toolbar);
        
         jpere.add(jPanel3);
-        this.setContentPane(jPanel3);
+        this.setContentPane(jpere);
         //on met icone de notre fentre
         Image icone = Toolkit.getDefaultToolkit().getImage("AppliStock.jpg");
         this.setIconImage(icone);
@@ -155,17 +164,6 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         statut = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        bilan_vente = new javax.swing.JMenuItem();
-        menu_vente = new javax.swing.JMenu();
-        menu_nouvelle_vente = new javax.swing.JMenuItem();
-        menu_nouveau_achat = new javax.swing.JMenuItem();
-        categorie = new javax.swing.JMenu();
-        Ajouter_cat = new javax.swing.JMenuItem();
-        rayon = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
 
@@ -386,63 +384,8 @@ public class page_acceuil1 extends javax.swing.JFrame  {
                             .addComponent(entree, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(depense, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lab_image, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu6.setText("journal");
-
-        bilan_vente.setText("bilan vente");
-        bilan_vente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bilan_venteActionPerformed(evt);
-            }
-        });
-        jMenu6.add(bilan_vente);
-
-        jMenuBar1.add(jMenu6);
-
-        menu_vente.setText("operation");
-
-        menu_nouvelle_vente.setText("nouvelle vente");
-        menu_nouvelle_vente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_nouvelle_venteActionPerformed(evt);
-            }
-        });
-        menu_vente.add(menu_nouvelle_vente);
-
-        menu_nouveau_achat.setText("nouvelle commande");
-        menu_nouveau_achat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_nouveau_achatActionPerformed(evt);
-            }
-        });
-        menu_vente.add(menu_nouveau_achat);
-
-        jMenuBar1.add(menu_vente);
-
-        categorie.setText("categorie");
-
-        Ajouter_cat.setText("Ajouter");
-        Ajouter_cat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ajouter_catActionPerformed(evt);
-            }
-        });
-        categorie.add(Ajouter_cat);
-
-        jMenuBar1.add(categorie);
-
-        rayon.setText("rayon");
-        jMenuBar1.add(rayon);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -453,7 +396,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -478,60 +421,35 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         }
     }
     
-    public void gestion_boutton_acceuil(){
-        this.setContentPane(jPanel3);
-        this.jp.getacceuil().addActionListener(new acceul());
-        this.four.getacceuil().addActionListener(new acceul());
-        this.et.getacceuil().addActionListener(new acceul());
-        this.cm_cli.getacceuil().addActionListener(new acceul());
-        this.cm_four.getacceuil().addActionListener(new acceul());
-        this.dp.getacceuil().addActionListener(new acceul());
-        this.cli.getacceuil().addActionListener(new acceul());
-        this.user.getacceuil().addActionListener(new acceul());
-        this.journal_vente.getacceuil().addActionListener(new acceul());
-    }
+  
     
-    private void bilan_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bilan_venteActionPerformed
-        // TODO add your handling code here:
-         default_dimention();
-        cl.show(jPanel3, "journal_vente");
-    }//GEN-LAST:event_bilan_venteActionPerformed
-
-    private void menu_nouvelle_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_nouvelle_venteActionPerformed
-        // TODO add your handling code here:
-        vue_choisir_client ch=new vue_choisir_client(null, true);
-     
-        ch.setVisible(true);
-    }//GEN-LAST:event_menu_nouvelle_venteActionPerformed
-
-    private void menu_nouveau_achatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_nouveau_achatActionPerformed
-        // TODO add your handling code here:
-        pannier_com_four pannier_four=new pannier_com_four(null, true);
-                pannier_four.setVisible(true);
-    }//GEN-LAST:event_menu_nouveau_achatActionPerformed
-
     private void entreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entreeActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "com_fournisseur");
+        this.setContentPane(jpere);
+        
     }//GEN-LAST:event_entreeActionPerformed
 
     private void etat_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etat_venteActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "journal_vente");
+        this.setContentPane(jpere);
     }//GEN-LAST:event_etat_venteActionPerformed
 
     private void utilisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utilisateurActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "user");
+        this.setContentPane(jpere);
     }//GEN-LAST:event_utilisateurActionPerformed
 
     private void produitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produitActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "produit");
+        this.setContentPane(jpere);
         //on actualise aussi l'espace produit via ce boutton
         jp.actualise_table();
         jp.actualise_panel();
@@ -541,37 +459,38 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "depense");
+        this.setContentPane(jpere);
     }//GEN-LAST:event_depenseActionPerformed
 
     private void client1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_client1ActionPerformed
         // TODO add your handling code here:
-        default_dimention();
+        this.setContentPane(jpere);
+        
         cl.show(jPanel3, "client");
+        default_dimention();
+        
     }//GEN-LAST:event_client1ActionPerformed
 
     private void etatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etatActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "etat de stock");
+        this.setContentPane(jpere);
     }//GEN-LAST:event_etatActionPerformed
 
     private void fournisseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fournisseurActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "fournisseur");
+        this.setContentPane(jpere);
     }//GEN-LAST:event_fournisseurActionPerformed
 
     private void venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venteActionPerformed
         // TODO add your handling code here:
         default_dimention();
         cl.show(jPanel3, "com_client");
+        this.setContentPane(jpere);
     }//GEN-LAST:event_venteActionPerformed
-
-    private void Ajouter_catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Ajouter_catActionPerformed
-        // TODO add your handling code here:
-        vue_categorie vc=new vue_categorie(null, true);
-        vc.setVisible(true);
-    }//GEN-LAST:event_Ajouter_catActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,9 +498,6 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Ajouter_cat;
-    private javax.swing.JMenuItem bilan_vente;
-    private javax.swing.JMenu categorie;
     private javax.swing.JButton client1;
     private javax.swing.JButton depense;
     private javax.swing.JButton entree;
@@ -591,25 +507,17 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lab_image;
     private javax.swing.JLabel label_principal;
-    private javax.swing.JMenuItem menu_nouveau_achat;
-    private javax.swing.JMenuItem menu_nouvelle_vente;
-    private javax.swing.JMenu menu_vente;
     private javax.swing.JLabel name_user;
     private javax.swing.JButton produit;
-    private javax.swing.JMenu rayon;
     private javax.swing.JLabel statut;
     private javax.swing.JButton utilisateur;
     private javax.swing.JButton vente;
@@ -644,9 +552,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     }
     //mes getteurs pour mes bouttons
 
-    public JMenuItem getBilan_vente() {
-        return bilan_vente;
-    }
+    
 
     public JButton getClient1() {
         return client1;
@@ -680,16 +586,18 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         return fournisseur;
     }
 
-    public JMenuItem getMenu_nouveau_achat() {
-        return menu_nouveau_achat;
-    }
-
-    public JMenuItem getMenu_nouvelle_vente() {
-        return menu_nouvelle_vente;
-    }
+   
    
     public void setStatut(String statut) {
         this.statut.setText(statut);
+    }
+
+    public static JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public static void setjPanel1(JPanel jPanel1) {
+        page_acceuil1.jPanel1 = jPanel1;
     }
     
 }

@@ -149,7 +149,7 @@ public class histograme extends javax.swing.JPanel {
        
        Dimension dim=new Dimension(700,650);
         
-       drawHistogramme(montant, nom_des_mois,"MONTANT", "PERIODE", "STATISTIQUE ANNUELLE", "INFO-STAT", dim);
+       drawHistogramme(montant, nom_des_mois,"MONTANT", "PERIODE", "STATISTIQUE ANNUELLE", "STATISTIQUE DE VENTE ANNUELLE", dim);
         
 
     }//GEN-LAST:event_jButton1ActionPerformed

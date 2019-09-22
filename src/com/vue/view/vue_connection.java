@@ -303,15 +303,23 @@ public class vue_connection extends javax.swing.JDialog {
                         this.dispose();
                         page_acceuil1 fe=new page_acceuil1();
                         
+                        
                       //si on est en presence du vendeur
                         if(user.getType().equals("vendeur")){
-                            fe.getClient1().setEnabled(false);
-                            fe.getUtilisateur().setEnabled(false);
-                            fe.getEntree().setEnabled(false);
-                            fe.getProduit().setEnabled(false);
-                            fe.getDepense().setEnabled(false);
-                            fe.getFournisseur().setEnabled(false);
-                            fe.getMenu_nouveau_achat().setEnabled(false);
+                            page_acceuil1.cl.show(page_acceuil1.jPanel3, "etat de stock");
+//                            fe.getClient1().setEnabled(false);
+//                            fe.getUtilisateur().setEnabled(false);
+//                            fe.getEntree().setEnabled(false);
+//                            fe.getProduit().setEnabled(false);
+//                            fe.getDepense().setEnabled(false);
+//                            fe.getFournisseur().setEnabled(false);
+                                barre_outil.tool_produit.setVisible(false);
+                                barre_outil.tool_client.setVisible(false);
+                                barre_outil.tool_entree.setVisible(false);
+                                barre_outil.tool_four.setVisible(false);
+                                barre_outil.tool_produit.setVisible(false);
+                               barre_outil.tool_user.setVisible(false);
+                               barre_outil.acceuil.setVisible(false);
                             
                         }
                         //en presence du magasinier
@@ -323,7 +331,7 @@ public class vue_connection extends javax.swing.JDialog {
                             fe.getVente().setEnabled(false);
                             fe.getFournisseur().setEnabled(false);
                             //on desactive les menus
-                            fe.getMenu_nouvelle_vente().setEnabled(false);
+                            
                         }
                         //sinon en presence du gerant il dispose tout les droits
                         
@@ -337,7 +345,7 @@ public class vue_connection extends javax.swing.JDialog {
                     }
                   }
                    else{
-                       JOptionPane.showMessageDialog(null, "pas utilisateur correspondant");
+                       new errorClasse(null, true, "PAS UTILISATEUR TROUVER", "null.png");
                    }
         }
     
