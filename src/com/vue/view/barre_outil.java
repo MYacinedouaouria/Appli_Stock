@@ -7,6 +7,15 @@ package com.vue.view;
 
 import com.classes.pack.Journal_vente;
 import com.vue.pack.page_acceuil1;
+import com.vue.pack.vue_pro;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
 
 /**
  *
@@ -19,6 +28,7 @@ public class barre_outil extends javax.swing.JPanel {
      */
     public barre_outil() {
         initComponents();
+        
     }
 
     /**
@@ -41,7 +51,7 @@ public class barre_outil extends javax.swing.JPanel {
         tool_user = new javax.swing.JButton();
         acceuil = new javax.swing.JButton();
         tool_etat_dep = new javax.swing.JButton();
-        tool_etat_vente2 = new javax.swing.JButton();
+        tool_etat_achat = new javax.swing.JButton();
 
         tool_produit.setBackground(new java.awt.Color(245, 240, 253));
         tool_produit.setForeground(new java.awt.Color(97, 117, 158));
@@ -50,6 +60,17 @@ public class barre_outil extends javax.swing.JPanel {
         tool_produit.setFocusable(false);
         tool_produit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_produit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_produit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_produitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_produitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_produitMouseExited(evt);
+            }
+        });
         tool_produit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_produitActionPerformed(evt);
@@ -63,6 +84,17 @@ public class barre_outil extends javax.swing.JPanel {
         tool_client.setFocusable(false);
         tool_client.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_client.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_client.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_clientMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_clientMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_clientMouseExited(evt);
+            }
+        });
         tool_client.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_clientActionPerformed(evt);
@@ -76,6 +108,17 @@ public class barre_outil extends javax.swing.JPanel {
         tool_four.setFocusable(false);
         tool_four.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_four.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_four.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_fourMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_fourMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_fourMouseExited(evt);
+            }
+        });
         tool_four.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_fourActionPerformed(evt);
@@ -84,11 +127,22 @@ public class barre_outil extends javax.swing.JPanel {
 
         tool_vente.setBackground(new java.awt.Color(245, 240, 253));
         tool_vente.setForeground(new java.awt.Color(97, 117, 158));
-        tool_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/vente.png"))); // NOI18N
+        tool_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/vent_cli.png"))); // NOI18N
         tool_vente.setToolTipText("VENTE");
         tool_vente.setFocusable(false);
         tool_vente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_vente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_vente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_venteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_venteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_venteMouseExited(evt);
+            }
+        });
         tool_vente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_venteActionPerformed(evt);
@@ -97,11 +151,22 @@ public class barre_outil extends javax.swing.JPanel {
 
         tool_entree.setBackground(new java.awt.Color(245, 240, 253));
         tool_entree.setForeground(new java.awt.Color(97, 117, 158));
-        tool_entree.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/email_send.png"))); // NOI18N
+        tool_entree.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/shopp.png"))); // NOI18N
         tool_entree.setToolTipText("ACHAT");
         tool_entree.setFocusable(false);
         tool_entree.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_entree.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_entree.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_entreeMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_entreeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_entreeMouseExited(evt);
+            }
+        });
         tool_entree.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_entreeActionPerformed(evt);
@@ -110,11 +175,22 @@ public class barre_outil extends javax.swing.JPanel {
 
         tool_etat_vente.setBackground(new java.awt.Color(245, 240, 253));
         tool_etat_vente.setForeground(new java.awt.Color(97, 117, 158));
-        tool_etat_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/DEPENSE.png"))); // NOI18N
+        tool_etat_vente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/Misc-Stats-icon.png"))); // NOI18N
         tool_etat_vente.setToolTipText("BILAN DES VENTES");
         tool_etat_vente.setFocusable(false);
         tool_etat_vente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_etat_vente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_etat_vente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_etat_venteMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_etat_venteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_etat_venteMouseExited(evt);
+            }
+        });
         tool_etat_vente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_etat_venteActionPerformed(evt);
@@ -128,6 +204,17 @@ public class barre_outil extends javax.swing.JPanel {
         tool_etat_stock.setFocusable(false);
         tool_etat_stock.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_etat_stock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_etat_stock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_etat_stockMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_etat_stockMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_etat_stockMouseExited(evt);
+            }
+        });
         tool_etat_stock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_etat_stockActionPerformed(evt);
@@ -141,6 +228,17 @@ public class barre_outil extends javax.swing.JPanel {
         tool_depense.setFocusable(false);
         tool_depense.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_depense.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_depense.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_depenseMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_depenseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_depenseMouseExited(evt);
+            }
+        });
         tool_depense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_depenseActionPerformed(evt);
@@ -149,11 +247,22 @@ public class barre_outil extends javax.swing.JPanel {
 
         tool_user.setBackground(new java.awt.Color(245, 240, 253));
         tool_user.setForeground(new java.awt.Color(97, 117, 158));
-        tool_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/CLI.png"))); // NOI18N
+        tool_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/userrr.png"))); // NOI18N
         tool_user.setToolTipText("UTILISATEURS");
         tool_user.setFocusable(false);
         tool_user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_user.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_userMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_userMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_userMouseExited(evt);
+            }
+        });
         tool_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_userActionPerformed(evt);
@@ -172,27 +281,49 @@ public class barre_outil extends javax.swing.JPanel {
 
         tool_etat_dep.setBackground(new java.awt.Color(245, 240, 253));
         tool_etat_dep.setForeground(new java.awt.Color(97, 117, 158));
-        tool_etat_dep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/DEP.png"))); // NOI18N
+        tool_etat_dep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/bar-graph-with-dollar-sign.png"))); // NOI18N
         tool_etat_dep.setToolTipText("BILAN DES DEPENSES");
         tool_etat_dep.setFocusable(false);
         tool_etat_dep.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tool_etat_dep.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_etat_dep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_etat_depMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_etat_depMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_etat_depMouseExited(evt);
+            }
+        });
         tool_etat_dep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tool_etat_depActionPerformed(evt);
             }
         });
 
-        tool_etat_vente2.setBackground(new java.awt.Color(245, 240, 253));
-        tool_etat_vente2.setForeground(new java.awt.Color(97, 117, 158));
-        tool_etat_vente2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/logo_vente.png"))); // NOI18N
-        tool_etat_vente2.setToolTipText("BILAN DES ACHATS");
-        tool_etat_vente2.setFocusable(false);
-        tool_etat_vente2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        tool_etat_vente2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tool_etat_vente2.addActionListener(new java.awt.event.ActionListener() {
+        tool_etat_achat.setBackground(new java.awt.Color(245, 240, 253));
+        tool_etat_achat.setForeground(new java.awt.Color(97, 117, 158));
+        tool_etat_achat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/diag.png"))); // NOI18N
+        tool_etat_achat.setToolTipText("BILAN DES ACHATS");
+        tool_etat_achat.setFocusable(false);
+        tool_etat_achat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tool_etat_achat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tool_etat_achat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tool_etat_achatMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tool_etat_achatMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tool_etat_achatMouseExited(evt);
+            }
+        });
+        tool_etat_achat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tool_etat_vente2ActionPerformed(evt);
+                tool_etat_achatActionPerformed(evt);
             }
         });
 
@@ -202,86 +333,94 @@ public class barre_outil extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(acceuil, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(190, 190, 190)
-                .addComponent(tool_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(tool_client, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(tool_four, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(tool_vente, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(tool_entree, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tool_etat_vente)
+                .addGap(110, 110, 110)
+                .addComponent(tool_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tool_etat_vente2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tool_client, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tool_four, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tool_vente, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tool_entree)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tool_etat_vente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tool_etat_achat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tool_etat_dep)
-                .addGap(6, 6, 6)
-                .addComponent(tool_etat_stock)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tool_depense, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tool_etat_stock, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tool_user, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addComponent(tool_depense, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tool_user)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tool_etat_vente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tool_etat_stock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tool_depense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tool_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tool_etat_dep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tool_etat_vente2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(acceuil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tool_vente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tool_four, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tool_produit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tool_client, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tool_entree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(19, 19, 19))
+                    .addComponent(tool_entree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tool_user, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(tool_depense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_etat_stock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tool_etat_dep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tool_etat_vente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tool_etat_achat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void tool_produitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_produitActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "produit");
+        vue_pro.actualiser.doClick();
     }//GEN-LAST:event_tool_produitActionPerformed
 
     private void tool_clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_clientActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "client");
+        vue_client1.actualiser.doClick();
     }//GEN-LAST:event_tool_clientActionPerformed
 
     private void tool_fourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_fourActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "fournisseur");
+        vue_fournisseur2.actualiser.doClick();
     }//GEN-LAST:event_tool_fourActionPerformed
 
     private void tool_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_venteActionPerformed
         // TODO add your handling code here:
-           if(vue_connection.user.getType().equals("vendeur")){
+           if(vue_connection.user.getType().equals("vendeur1")||vue_connection.user.getType().equals("vendeur2")){
             vue_choisir_client ch=new vue_choisir_client(null, true);
             ch.setVisible(true);
     }
            else{
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "com_client");
+        journal_facture.actualiser.doClick();
            }
     }//GEN-LAST:event_tool_venteActionPerformed
 
     private void tool_entreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_entreeActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "com_fournisseur");
+        journal_com_four1.actualiser.doClick();
     }//GEN-LAST:event_tool_entreeActionPerformed
 
     private void tool_etat_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_venteActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "journal_vente");
+        journal_dep_stat.jour.doClick();
     }//GEN-LAST:event_tool_etat_venteActionPerformed
 
     private void tool_etat_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_stockActionPerformed
@@ -292,11 +431,13 @@ public class barre_outil extends javax.swing.JPanel {
     private void tool_depenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_depenseActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3,"depense");
+        vue_depense1.actualiser.doClick();
     }//GEN-LAST:event_tool_depenseActionPerformed
 
     private void tool_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_userActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "user");
+        vue_utilisateur1.actualiser.doClick();
     }//GEN-LAST:event_tool_userActionPerformed
 
     private void acceuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceuilActionPerformed
@@ -307,31 +448,318 @@ public class barre_outil extends javax.swing.JPanel {
     }//GEN-LAST:event_acceuilActionPerformed
 
     private void tool_etat_depActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_depActionPerformed
-        // TODO add your handling code here:
         
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "bilan_dep");
         //methode pour actualiser le panel
        
     }//GEN-LAST:event_tool_etat_depActionPerformed
 
-    private void tool_etat_vente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_vente2ActionPerformed
+    private void tool_etat_achatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_achatActionPerformed
         // TODO add your handling code here:
          page_acceuil1.cl.show(page_acceuil1.jPanel3, "bilan_achat");
-    }//GEN-LAST:event_tool_etat_vente2ActionPerformed
+         journal_achat_stat1.jour.doClick();
+    }//GEN-LAST:event_tool_etat_achatActionPerformed
 
+    private void tool_produitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_produitMouseClicked
+        // TODO add your handling code here:
+         tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+            etat=1;
+    }//GEN-LAST:event_tool_produitMouseClicked
 
+    private void tool_clientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_clientMouseClicked
+        // TODO add your handling code here:
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+            etat=2;
+    }//GEN-LAST:event_tool_clientMouseClicked
+
+    private void tool_fourMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_fourMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+            etat=3;
+    }//GEN-LAST:event_tool_fourMouseClicked
+
+    private void tool_produitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_produitMouseEntered
+        // TODO add your handling code here:
+        tool_produit.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_produitMouseEntered
+
+    private void tool_clientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_clientMouseEntered
+        // TODO add your handling code here:
+        tool_client.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_clientMouseEntered
+
+    private void tool_fourMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_fourMouseEntered
+        // TODO add your handling code here:
+        tool_four.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_fourMouseEntered
+
+    private void tool_produitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_produitMouseExited
+        // TODO add your handling code here:
+         if(etat!=1)
+        tool_produit.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_produitMouseExited
+
+    private void tool_clientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_clientMouseExited
+        // TODO add your handling code here:
+         if(etat!=2)
+        tool_client.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_clientMouseExited
+
+    private void tool_fourMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_fourMouseExited
+        // TODO add your handling code here:
+         if(etat!=3)
+        tool_four.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_fourMouseExited
+
+    private void tool_venteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_venteMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=4;
+    }//GEN-LAST:event_tool_venteMouseClicked
+
+    private void tool_venteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_venteMouseEntered
+        // TODO add your handling code here:
+        tool_vente.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_venteMouseEntered
+
+    private void tool_venteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_venteMouseExited
+        // TODO add your handling code here:
+        if(etat!=4)
+        tool_vente.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_venteMouseExited
+
+    private void tool_entreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_entreeMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=5;
+    }//GEN-LAST:event_tool_entreeMouseClicked
+
+    private void tool_entreeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_entreeMouseEntered
+        // TODO add your handling code here
+        tool_entree.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_entreeMouseEntered
+
+    private void tool_entreeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_entreeMouseExited
+        // TODO add your handling code here:
+        if(etat!=5)
+        tool_entree.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_entreeMouseExited
+
+    private void tool_etat_venteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_venteMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=6;
+    }//GEN-LAST:event_tool_etat_venteMouseClicked
+
+    private void tool_etat_venteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_venteMouseEntered
+        // TODO add your handling code here:
+        tool_etat_vente.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_etat_venteMouseEntered
+
+    private void tool_etat_venteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_venteMouseExited
+        // TODO add your handling code here:
+        if(etat!=6)
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_etat_venteMouseExited
+
+    private void tool_etat_achatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_achatMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=7;
+    }//GEN-LAST:event_tool_etat_achatMouseClicked
+
+    private void tool_etat_achatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_achatMouseEntered
+        // TODO add your handling code here:
+        tool_etat_achat.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_etat_achatMouseEntered
+
+    private void tool_etat_achatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_achatMouseExited
+        // TODO add your handling code here:
+        if(etat!=7)
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_etat_achatMouseExited
+
+    private void tool_etat_depMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_depMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=8;
+    }//GEN-LAST:event_tool_etat_depMouseClicked
+
+    private void tool_etat_depMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_depMouseExited
+        // TODO add your handling code here:
+        if(etat!=8)
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_etat_depMouseExited
+
+    private void tool_etat_depMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_depMouseEntered
+        // TODO add your handling code here:
+        tool_etat_dep.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_etat_depMouseEntered
+
+    private void tool_etat_stockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_stockMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=9;
+    }//GEN-LAST:event_tool_etat_stockMouseClicked
+
+    private void tool_etat_stockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_stockMouseEntered
+        // TODO add your handling code here:
+        tool_etat_stock.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_etat_stockMouseEntered
+
+    private void tool_etat_stockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_etat_stockMouseExited
+        // TODO add your handling code here:
+        if(etat!=9)
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_etat_stockMouseExited
+
+    private void tool_depenseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_depenseMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        tool_user.setBackground(new Color(245, 240, 253));
+        etat=10;
+    }//GEN-LAST:event_tool_depenseMouseClicked
+
+    private void tool_depenseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_depenseMouseEntered
+        // TODO add your handling code here:
+        tool_depense.setBackground(Color.LIGHT_GRAY);
+        if(etat!=10)
+        tool_depense.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_depenseMouseEntered
+
+    private void tool_depenseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_depenseMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tool_depenseMouseExited
+
+    private void tool_userMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_userMouseEntered
+        // TODO add your handling code here:
+        tool_user.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_tool_userMouseEntered
+
+    private void tool_userMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_userMouseExited
+        // TODO add your handling code here:
+        if(etat!=11)
+        tool_user.setBackground(new Color(245, 240, 253));
+    }//GEN-LAST:event_tool_userMouseExited
+
+    private void tool_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_userMouseClicked
+        // TODO add your handling code here:
+        tool_client.setBackground(new Color(245, 240, 253));
+        tool_four.setBackground(new Color(245, 240, 253));
+        tool_vente.setBackground(new Color(245, 240, 253));
+        tool_entree.setBackground(new Color(245, 240, 253));
+        tool_etat_vente.setBackground(new Color(245, 240, 253));
+        tool_etat_achat.setBackground(new Color(245, 240, 253));
+        tool_etat_dep.setBackground(new Color(245, 240, 253));
+        tool_etat_stock.setBackground(new Color(245, 240, 253));
+        tool_depense.setBackground(new Color(245, 240, 253));
+        tool_produit.setBackground(new Color(245, 240, 253));
+        etat=11;
+    }//GEN-LAST:event_tool_userMouseClicked
+
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton acceuil;
     public static javax.swing.JButton tool_client;
     public static javax.swing.JButton tool_depense;
     public static javax.swing.JButton tool_entree;
+    public static javax.swing.JButton tool_etat_achat;
     public static javax.swing.JButton tool_etat_dep;
     public static javax.swing.JButton tool_etat_stock;
     public static javax.swing.JButton tool_etat_vente;
-    public static javax.swing.JButton tool_etat_vente2;
     public static javax.swing.JButton tool_four;
     public static javax.swing.JButton tool_produit;
     public static javax.swing.JButton tool_user;
     public static javax.swing.JButton tool_vente;
     // End of variables declaration//GEN-END:variables
+    public static int etat=1;
 }

@@ -343,7 +343,6 @@ public class vue_depense1 extends javax.swing.JPanel {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(319, 319, 319))))
         );
@@ -377,8 +376,7 @@ public class vue_depense1 extends javax.swing.JPanel {
         // TODO add your handling code here:
         //ici on met tous les formulaire � vide
         
-        nature.setText("");
-        montant.setText("");
+        
         actualise_table();
        actualise_panel();
        
@@ -406,6 +404,8 @@ public class vue_depense1 extends javax.swing.JPanel {
                 table_depense.setModel(model);
                 jop.showMessageDialog(null, "ajout reussi","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                actualise_table();
+                journal_dep_stat.jour.doClick();
             }
 
             else{
@@ -447,6 +447,8 @@ public class vue_depense1 extends javax.swing.JPanel {
                 actualise_table();
                 jop.showMessageDialog(null, "modification reussie","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                actualise_table();
+                journal_dep_stat.jour.doClick();
             }
             else{
                 new errorClasse(null, true, "echec de modification","echec");
@@ -484,6 +486,8 @@ public class vue_depense1 extends javax.swing.JPanel {
                     model.l_e.remove(c);
                     jop.showMessageDialog(null,"suppression reussie","suppression",JOptionPane.INFORMATION_MESSAGE);
                     actualise_panel();
+                    actualise_table();
+                    journal_dep_stat.jour.doClick();
                 }
                 else{
                     jop.showMessageDialog(null,"erreur de suppression","error",JOptionPane.ERROR_MESSAGE);
@@ -537,7 +541,7 @@ public class vue_depense1 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private javax.swing.JButton imprimer;
     private javax.swing.JPanel jPanel1;
@@ -564,12 +568,15 @@ public class vue_depense1 extends javax.swing.JPanel {
     
     //methode pour actualiser le panel
     public void actualise_panel(){
+        nature.setText("");
+        montant.setText("");
+        
     	processus.repaint();
         processus.validate();
     }
     //on actualise le tableau en affichant tous les produits
     public void actualise_table(){
-    	model.l_e=r.affiche_dep();
+                model.l_e=r.affiche_dep();
 		table_depense.setModel(model);
                 //il sagit d'une methode pour selectionner une seule ligne a la fois
                 

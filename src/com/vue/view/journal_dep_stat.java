@@ -56,7 +56,7 @@ public class journal_dep_stat extends javax.swing.JPanel {
          DateFormat dateFormat;
 	//panel courant
 	private JPanel processus=new JPanel();
-        ModelTable_bilan_dep mj=new ModelTable_bilan_dep();
+        public static ModelTable_bilan_dep mj=new ModelTable_bilan_dep();
         //il faut mettre nos bouttons radio dzans un groupe
         ButtonGroup bg;
     public journal_dep_stat() throws SQLException, ParseException {
@@ -86,6 +86,7 @@ public class journal_dep_stat extends javax.swing.JPanel {
         table_journal.getTableHeader().setDefaultRenderer(new TableHeader());
         processus=this;
         
+         tous.setSelected(true);
         
         
     }
@@ -454,7 +455,7 @@ public class journal_dep_stat extends javax.swing.JPanel {
     private javax.swing.JButton imprimer;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton jour;
+    public static javax.swing.JRadioButton jour;
     private javax.swing.JLabel l_recherpar;
     private javax.swing.JLabel l_recherpar1;
     private javax.swing.JLabel l_recherpar2;
@@ -462,7 +463,7 @@ public class journal_dep_stat extends javax.swing.JPanel {
     private javax.swing.JRadioButton mois;
     private javax.swing.JButton rechercher;
     private javax.swing.JRadioButton semaine;
-    private javax.swing.JTable table_journal;
+    public static javax.swing.JTable table_journal;
     public static java.awt.Label titre_stat;
     private javax.swing.JLabel total;
     private javax.swing.JRadioButton tous;

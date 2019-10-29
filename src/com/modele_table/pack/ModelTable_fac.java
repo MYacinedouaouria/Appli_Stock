@@ -16,7 +16,7 @@ public class ModelTable_fac extends AbstractTableModel{
 		
 		public List<Facture> l_e=new ArrayList<Facture>();
 		//public String[] entete={"MATRICULE","NOM","PRENOM","NOM_FILIERE","NIVEAU","AGE","SEXE"};
-		public String [] title={"NUMERO", "NOM CLIENT","DATE", "TOTAL"};
+		public String [] title={"STATUT DU VENDEUR", "NOM CLIENT","DATE", "TOTAL"};
 		public ModelTable_fac(){
 			super();
 			
@@ -45,7 +45,8 @@ public class ModelTable_fac extends AbstractTableModel{
 			// TODO Auto-generated method stub
 			switch (j) {
 			case 0:
-				return i+1;
+				return l_e.get(i).getNom_vendeur()+" ("+l_e.get(i).getStatut_vendeur()+")";
+			
 			case 1:
 				return l_e.get(i).getNom_client();
 			

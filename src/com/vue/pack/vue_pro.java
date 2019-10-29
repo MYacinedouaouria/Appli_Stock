@@ -14,7 +14,10 @@ import com.implementation.pack.Role;
 import com.modele_table.pack.BeauteTableau.BeauteQteProduit;
 import com.modele_table.pack.BeauteTableau.TableHeader;
 import com.modele_table.pack.ModelTable;
+import com.sun.org.glassfish.external.probe.provider.annotations.Probe;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -24,6 +27,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -34,6 +39,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -56,7 +66,7 @@ public class vue_pro extends javax.swing.JPanel {
        // chargement de tous les produits issus de la base de donnnee
         actualise_table();
         
-       
+       //valeur_recher.getDocument().addDocumentListener(new filtrage_saisie());
         table_produit.addMouseListener(new remplissage());
         selection_recher.setAutoscrolls(true);
         //chargement des categories et rayon issus de la base de donnée
@@ -65,10 +75,10 @@ public class vue_pro extends javax.swing.JPanel {
         setlist_categorie(lc);
 
         table_produit.getTableHeader().setDefaultRenderer(new TableHeader());
-        table_produit.getColumnModel().getColumn(5).setCellRenderer(new BeauteQteProduit());
+        table_produit.getColumnModel().getColumn(4).setCellRenderer(new BeauteQteProduit());
         // init_categorie();
         
-         autoSuggestor = new AutoSuggestor(valeur_recher, frame, null, Color.black, Color.white, Color.red, 0.75f) {
+         autoSuggestor = new AutoSuggestor(valeur_recher, frame, null, new Color(67,67,67), Color.white, Color.red, 0.75f) {
             @Override
             boolean wordTyped(String typedWord) {
             	Role r=new Role();
@@ -122,6 +132,8 @@ public class vue_pro extends javax.swing.JPanel {
         ajouter = new javax.swing.JButton();
         actualiser = new javax.swing.JButton();
         modifier = new javax.swing.JButton();
+        quantite = new javax.swing.JFormattedTextField();
+        l_alert1 = new javax.swing.JLabel();
         import_excel = new javax.swing.JButton();
 
         label1.setAlignment(java.awt.Label.CENTER);
@@ -139,7 +151,7 @@ public class vue_pro extends javax.swing.JPanel {
         });
 
         l_recherpar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        l_recherpar.setForeground(java.awt.Color.red);
+        l_recherpar.setForeground(new java.awt.Color(97, 117, 158));
         l_recherpar.setText("RECHERCHER PAR");
 
         valeur_recher.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -198,7 +210,7 @@ public class vue_pro extends javax.swing.JPanel {
                 .addComponent(valeur_recher, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(imprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,15 +223,16 @@ public class vue_pro extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(imprimer)
-                        .addGap(0, 3, Short.MAX_VALUE))
                     .addComponent(l_recherpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(supprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(valeur_recher, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(selection_recher, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rechercher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(rechercher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(supprimer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(imprimer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 3, Short.MAX_VALUE))))
         );
 
         jScrollPane1.setBackground(new java.awt.Color(191, 194, 204));
@@ -321,32 +334,16 @@ public class vue_pro extends javax.swing.JPanel {
             }
         });
 
+        quantite.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#"))));
+        quantite.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        l_alert1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        l_alert1.setText("Quantite");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nom_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(l_nompro)
-                        .addGap(184, 184, 184))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(l_idcathe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(l_pu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(l_alert, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(prix_uni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(categorie, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(stock_alert))))
-                .addGap(138, 138, 138))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(actualiser, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,7 +351,32 @@ public class vue_pro extends javax.swing.JPanel {
                 .addComponent(ajouter, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(modifier, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(l_nompro)
+                            .addGap(21, 21, 21))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(l_idcathe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(l_pu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(4, 4, 4))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(l_alert, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(l_alert1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quantite, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(prix_uni)
+                    .addComponent(categorie, 0, 167, Short.MAX_VALUE)
+                    .addComponent(nom_produit)
+                    .addComponent(stock_alert, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,18 +385,22 @@ public class vue_pro extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l_nompro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nom_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(l_idcathe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(categorie, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prix_uni, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l_pu, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(stock_alert, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_alert, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(quantite)
+                    .addComponent(l_alert1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(stock_alert, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(l_alert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(actualiser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -403,17 +429,18 @@ public class vue_pro extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(228, 228, 228)
                         .addComponent(import_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,6 +481,7 @@ public class vue_pro extends javax.swing.JPanel {
                     model.l_e.remove(p);
                     jop.showMessageDialog(null, "suppression reussie", "suppression", JOptionPane.INFORMATION_MESSAGE);
                     actualise_panel();
+                    actualise_table();
                 } else {
                     jop.showMessageDialog(null, "erreur de suppression", "error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -547,9 +575,8 @@ public class vue_pro extends javax.swing.JPanel {
             p.setAlert(Integer.parseInt(stock_alert.getText()));
             //p.setQuantite(Integer.parseInt(prix_uni.getText()));
             //on recupere la quantite du produit
-            String qte= jop.showInputDialog(null,"entrer la quantite initiale en stock","quantite initiale",JOptionPane.INFORMATION_MESSAGE);
-            int qte_stock=Integer.parseInt(qte);
-            p.setQuantite(qte_stock);
+            
+            p.setQuantite(Integer.parseInt(quantite.getText()));
 
             //operation ajout dans la bd et dans les tables
             if(!r.produit_existe(p.getNom_produit())){
@@ -559,6 +586,7 @@ public class vue_pro extends javax.swing.JPanel {
                     table_produit.setModel(model);
                     jop.showMessageDialog(null, "ajout reussi","good",JOptionPane.INFORMATION_MESSAGE);
                     actualise_panel();
+                    actualise_table();
                 }
 
                 else{
@@ -599,7 +627,7 @@ public class vue_pro extends javax.swing.JPanel {
 
             //p.setQuantite(Integer.parseInt(prix_uni.getText()));
             //operation ajout dans la bd et dans les tables
-            int confirmation=jop.showConfirmDialog(null, "voulez vous vraiment modifier le produit de code: " +p.getId_produit(),"confirmation de modification",JOptionPane.YES_NO_CANCEL_OPTION);
+            int confirmation=jop.showConfirmDialog(null, "voulez vous vraiment modifier le produit : " +p.getNom_produit(),"confirmation de modification",JOptionPane.YES_NO_CANCEL_OPTION);
             if(confirmation==0)
             
                 if((r.produit_existe(nom_produit.getText())&&(p.getNom_produit().equals(nom_produit.getText())))||!r.produit_existe(nom_produit.getText())){
@@ -614,6 +642,7 @@ public class vue_pro extends javax.swing.JPanel {
                         actualise_table();
                         jop.showMessageDialog(null, "modification reussie","good",JOptionPane.INFORMATION_MESSAGE);
                         actualise_panel();
+                        actualise_table();
                     }
 
                 }
@@ -631,25 +660,36 @@ public class vue_pro extends javax.swing.JPanel {
     }//GEN-LAST:event_modifierActionPerformed
 
     private void import_excelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_import_excelActionPerformed
-        // TODO add your handling code here:
-        JFileChooser choix = new JFileChooser();
+                                                   
+            LookAndFeel lookandfell = UIManager.getLookAndFeel();
+        try {
+            // TODO add your handling code here:
+            //prise du look du systeme
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-        int retour = choix.showOpenDialog(null);
-        if (retour == JFileChooser.APPROVE_OPTION) {
-            // un fichier a été choisi (sortie par OK)
-            // nom du fichier  choisi 
-            choix.getSelectedFile().getName();
-            // chemin absolu du fichier choisi
-            choix.getSelectedFile().
-                    getAbsolutePath();
-            int conf=JOptionPane.showConfirmDialog(null, "voulez vraiment effectuer exportation?","demande de confirmation",JOptionPane.YES_NO_OPTION);
-        if (conf == 0) {
-            Produit.export_excel(choix.getSelectedFile());
-            actualise_table();
-            actualise_panel();
-        }
-        } else {
-            JOptionPane.showMessageDialog(null, "aucune selection de fichier excel au format xls");
+            JFileChooser choix = new JFileChooser();
+
+            int retour = choix.showOpenDialog(null);
+            if (retour == JFileChooser.APPROVE_OPTION) {
+                // un fichier a été choisi (sortie par OK)
+                // nom du fichier  choisi
+                choix.getSelectedFile().getName();
+                // chemin absolu du fichier choisi
+                choix.getSelectedFile().
+                        getAbsolutePath();
+                int conf = JOptionPane.showConfirmDialog(null, "voulez vraiment effectuer exportation?", "demande de confirmation", JOptionPane.YES_NO_OPTION);
+                if (conf == 0) {
+                    Produit.export_excel(choix.getSelectedFile());
+                    actualise_table();
+                    actualise_panel();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "aucune selection de fichier excel au format xls");
+            }
+            //on remet anciens look
+            UIManager.setLookAndFeel(lookandfell);
+        } catch (Exception ex) {
+            Logger.getLogger(vue_pro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_import_excelActionPerformed
 //la classe interne remplissage
@@ -699,7 +739,7 @@ public class vue_pro extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private javax.swing.JComboBox<String> categorie;
     private javax.swing.JButton import_excel;
@@ -709,6 +749,7 @@ public class vue_pro extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel l_alert;
+    private javax.swing.JLabel l_alert1;
     private javax.swing.JLabel l_idcathe;
     private javax.swing.JLabel l_nompro;
     private javax.swing.JLabel l_pu;
@@ -718,6 +759,7 @@ public class vue_pro extends javax.swing.JPanel {
     private javax.swing.JButton modifier;
     private javax.swing.JTextField nom_produit;
     private javax.swing.JFormattedTextField prix_uni;
+    private javax.swing.JFormattedTextField quantite;
     private javax.swing.JButton rechercher;
     private javax.swing.JComboBox<String> selection_recher;
     private javax.swing.JFormattedTextField stock_alert;
@@ -752,6 +794,27 @@ public class vue_pro extends javax.swing.JPanel {
             ComboBoxModel<String> mc=new DefaultComboBoxModel<>(lc);
             this.categorie.setModel(mc);
     }
-    
+    //ma classe listener pour filtrer mon tableau au fur et a mesure
+    public class filtrage_saisie implements DocumentListener{
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+           String val=valeur_recher.getText();
+            model.l_e=r.rechercher_Produit_nom(val);
+		table_produit.setModel(model);
+                 
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            insertUpdate(e);
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            changedUpdate(e);
+        }
+
+    }
     
 }

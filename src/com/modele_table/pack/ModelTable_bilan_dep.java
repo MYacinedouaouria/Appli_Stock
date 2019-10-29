@@ -53,7 +53,7 @@ public class ModelTable_bilan_dep extends AbstractTableModel{
 			case 3:
 				return l_e.get(i).getMontant();
                         case 4:
-				return l_e.get(i).getStatut_vendeur();
+				return l_e.get(i).getNom_vendeur()+" ("+l_e.get(i).getStatut_vendeur()+")";
 			
 			default:
 				return null;

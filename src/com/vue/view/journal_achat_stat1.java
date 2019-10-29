@@ -84,7 +84,7 @@ public class journal_achat_stat1 extends javax.swing.JPanel {
         table_journal.getTableHeader().setDefaultRenderer(new TableHeader());
         processus=this;
         
-        
+         tous.setSelected(true);
         
     }
 
@@ -452,7 +452,7 @@ public class journal_achat_stat1 extends javax.swing.JPanel {
     private javax.swing.JButton imprimer;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JRadioButton jour;
+    public static javax.swing.JRadioButton jour;
     private javax.swing.JLabel l_recherpar;
     private javax.swing.JLabel l_recherpar1;
     private javax.swing.JLabel l_recherpar2;

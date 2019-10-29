@@ -403,11 +403,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
         // TODO add your handling code here:
         //ici on met tous les formulaire � vide
 
-        entreprise.setText("");
-        nom_four.setText("");
-        addresse.setText("");
-        tel_four.setText("");
-        ville.setText("");
+      
         actualise_table();
         actualise_panel();
     }//GEN-LAST:event_actualiserActionPerformed
@@ -433,6 +429,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
                 table_fournisseur.setModel(model);
                 jop.showMessageDialog(null, "ajout reussi","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                actualise_table();
             }
 
             else{
@@ -471,6 +468,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
                 actualise_table();
                 jop.showMessageDialog(null, "modification reussie","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                actualise_table();
             }
             else{
                 jop.showMessageDialog(null, "erreur! verifier que le produit existe!:","erreur de modification",JOptionPane.ERROR_MESSAGE);
@@ -511,6 +509,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
 
             table_fournisseur.setModel(model);
             actualise_panel();
+            
         }
         catch(NumberFormatException n){
             jop.showMessageDialog(null, "veillez saisir dans le champ de recherche","erreur de remplissage",JOptionPane.WARNING_MESSAGE);
@@ -534,6 +533,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
 					model.l_e.remove(f);
 					jop.showMessageDialog(null,"suppression reussie","suppression",JOptionPane.INFORMATION_MESSAGE);
 					actualise_panel();
+                                        actualise_table();
 				}
 				else{
 					jop.showMessageDialog(null,"erreur de suppression","error",JOptionPane.ERROR_MESSAGE);
@@ -589,7 +589,7 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JTextField addresse;
     private javax.swing.JButton ajouter;
     private javax.swing.JTextField entreprise;
@@ -620,8 +620,13 @@ public class vue_fournisseur2 extends javax.swing.JPanel {
 
      //repaindre le panel en cours
      public void actualise_panel(){
+        entreprise.setText("");
+        nom_four.setText("");
+        addresse.setText("");
+        tel_four.setText("");
+        ville.setText("");
      	processus.repaint();
- 		processus.validate();
+ 	processus.validate();
      }
    //on actualise le tableau en affichant tous les fournisseurs
      public void actualise_table(){

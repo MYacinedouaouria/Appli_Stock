@@ -30,7 +30,7 @@ public class bilan_depense {
     Date date_dep;
     Float montant;
     String statut_vendeur;
-    
+    String nom_vendeur;
     private float total_final;
    
     
@@ -39,12 +39,14 @@ public class bilan_depense {
    
     public bilan_depense(){}
 
-    public bilan_depense(String type, String nature, Date date_dep, Float montant,String statut) {
+    public bilan_depense(String type, String nature, Date date_dep, Float montant,String statut,String nom) {
         this.type = type;
         this.nature = nature;
         this.date_dep = date_dep;
         this.montant = montant;
         this.statut_vendeur=statut;
+        this.nom_vendeur=nom;
+        
     }
 
     public String getStatut_vendeur() {
@@ -53,6 +55,14 @@ public class bilan_depense {
 
     public void setStatut_vendeur(String statut_vendeur) {
         this.statut_vendeur = statut_vendeur;
+    }
+
+    public String getNom_vendeur() {
+        return nom_vendeur;
+    }
+
+    public void setNom_vendeur(String nom_vendeur) {
+        this.nom_vendeur = nom_vendeur;
     }
 
   
@@ -184,18 +194,18 @@ SingletonConnecction sg=new SingletonConnecction();
      try {
              PreparedStatement ps;
                 if(filtrage!="tous"){
-                    ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep,u.TYPE from depense as d,admin as u where d.login=u.login and date_dep BETWEEN ? AND ?");
+                    ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep,u.TYPE,u.NOM from depense as d,admin as u where d.login=u.login and date_dep BETWEEN ? AND ?");
                      ps.setString(1,this.getDate1());
                      ps.setString(2, this.getDate2());
                 }
                 else{
-                     ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep,u.TYPE from depense as d,admin as u where d.login=u.login");
+                     ps=co.prepareStatement("SELECT type_depense, nature,montant,date_dep,u.TYPE,u.NOM from depense as d,admin as u where d.login=u.login");
                 }
                  
          
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				jv=new bilan_depense(rs.getString("type_depense"),rs.getString("nature"),rs.getDate("date_dep"), rs.getFloat("montant"),rs.getString("u.TYPE"));
+				jv=new bilan_depense(rs.getString("type_depense"),rs.getString("nature"),rs.getDate("date_dep"), rs.getFloat("montant"),rs.getString("u.TYPE"),rs.getString("u.NOM"));
                                 lv.add(jv);
                         }
 		} catch (SQLException e) {

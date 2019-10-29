@@ -86,6 +86,7 @@ public class vue_panier extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+       // this.setSize(500,500);
         processus=this;
         table_panier.addMouseListener(new remplissage());
         //simulation du champ de saisie avec la liste deroutlante
@@ -108,7 +109,7 @@ public class vue_panier extends javax.swing.JDialog {
         
         table_panier.getTableHeader().setDefaultRenderer(new TableHeader());
         
-        pack();
+        
     }
 
     /**
@@ -139,6 +140,8 @@ public class vue_panier extends javax.swing.JDialog {
         stock_restant = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         prix_uni = new javax.swing.JLabel();
+        l_cat = new javax.swing.JLabel();
+        categorie = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_panier = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -246,6 +249,16 @@ public class vue_panier extends javax.swing.JDialog {
         prix_uni.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         prix_uni.setText("?");
 
+        l_cat.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        l_cat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_cat.setText("categorie");
+
+        categorie.setBackground(new java.awt.Color(51, 51, 51));
+        categorie.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        categorie.setForeground(java.awt.Color.blue);
+        categorie.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        categorie.setText("?");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -259,14 +272,20 @@ public class vue_panier extends javax.swing.JDialog {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nom_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jsp, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(stock_restant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(prix_uni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(jsp, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(l_cat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(stock_restant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(prix_uni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(categorie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -294,9 +313,9 @@ public class vue_panier extends javax.swing.JDialog {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addComponent(nom_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(actualiser, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,13 +338,16 @@ public class vue_panier extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(stock_restant, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(prix_uni)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(l_cat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(categorie))
         );
 
         jScrollPane2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -539,9 +561,11 @@ public class vue_panier extends javax.swing.JDialog {
             Date curdate=new Date();
             java.sql.Date datesql=new java.sql.Date(curdate.getYear(),curdate.getMonth(), curdate.getDate());
            
-                Facture f=new Facture(client.getId_client(),datesql, somme);
+                Facture f=new Facture(client.getId_client(),datesql, somme,vue_connection.user.getLogin());
                 r.ajouter_listcom(pc.l_e,f);
-                
+                this.dispose();
+                journal_vente_stat1.jour.doClick();
+                //on desactive impression des factures
                 try {
                     //System.exit(-1);
                     int confir_imp=jop.showConfirmDialog(null, "imprimer la facture?: " ,"confirmation d'impression",JOptionPane.YES_NO_CANCEL_OPTION);
@@ -659,7 +683,10 @@ public class vue_panier extends javax.swing.JDialog {
             ci.setNom_produit(nom_produit.getText());
             ci.setPrix_uni(Float.parseFloat(prix_achat.getText()));
             ci.setQte_produit(Integer.parseInt(quantite.getText()));
+            
+            
             ci.setTotal(ci.getPrix_uni()*ci.getQte_produit());
+            
 
            
 
@@ -748,6 +775,7 @@ public class vue_panier extends javax.swing.JDialog {
     private javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private javax.swing.JTextField cash;
+    private javax.swing.JLabel categorie;
     private javax.swing.JTextField date;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -763,6 +791,7 @@ public class vue_panier extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jsp;
     private javax.swing.JLabel l_cash;
+    private javax.swing.JLabel l_cat;
     private javax.swing.JLabel l_total;
     private javax.swing.JList<String> liste_deroulante;
     private javax.swing.JButton modifier;
@@ -893,8 +922,10 @@ public class vue_panier extends javax.swing.JDialog {
                         }
 			liste_deroulante.setListData(tnom);
 			 if(r.produit_existe(val)){
+                             Produit p=r.rechercher_Produit_nom(val).get(0);
                              stock_restant.setText(""+r.recup_quantite_stock(val));
-                             prix_uni.setText(""+r.rechercher_Produit_nom(val).get(0).getPrix_unitaire());
+                             prix_uni.setText(""+p.getPrix_unitaire());
+                             categorie.setText(p.getId_categorie());
                          }
                          else{
                              stock_restant.setText("?");

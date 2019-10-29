@@ -255,8 +255,8 @@ public class Role implements Admin {
 		try {
 			PreparedStatement ps;
 			
-				 ps=co.prepareStatement("select * from PRODUIT where NOM_PRO=?");
-				ps.setString(1, nom);
+				 ps=co.prepareStatement("select * from PRODUIT where NOM_PRO like?");
+				ps.setString(1, nom+"%");
 			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
@@ -479,7 +479,7 @@ public class Role implements Admin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			if(lp.isEmpty())throw new RuntimeException("pas de fournisseur  trouver");
+			if(lp==null)throw new RuntimeException("pas de fournisseur  trouver");
 		return lp;
 	}
 
@@ -939,7 +939,7 @@ public class Role implements Admin {
 	}
 
 	@Override
-	public void supprimer_com_client(Commande_cli cl) {
+	public boolean supprimer_com_client(Commande_cli cl) {
 		// TODO Auto-generated method stub
 		PreparedStatement ps;
 		try {
@@ -953,7 +953,9 @@ public class Role implements Admin {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+                        return false;
 		}
+                return true;
 	}
 
 	@Override
@@ -1074,17 +1076,22 @@ public class Role implements Admin {
 	}
  
 	@Override
-	public void modifier_com_client(Commande_cli cl) {
+	public boolean modifier_com_client(Commande_cli cl) {
 		// TODO Auto-generated method stub
                 
 		PreparedStatement ps;
 		try {
-			ps=co.prepareStatement("");
+			ps=co.prepareStatement("update COMMANDE_CLI set PRI_UNI=?, QUANTITE=? where id_com=?");
+                        ps.setFloat(1, cl.getPrix_uni());
+                        ps.setInt(2, cl.getQte_produit());
+                        ps.setInt(3, cl.getId_command());
+                        ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+                        return false;
 		}
-	
+                return true;
 	}
         
         //autres methodes pout la gestion des commmandes fournisseurs
@@ -1282,7 +1289,7 @@ public class Role implements Admin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			if(lp.isEmpty())throw new RuntimeException("pas de CLIENT trouver");
+			if(lp==null)throw new RuntimeException("pas de CLIENT trouver");
 		return lp;
 	
     }
@@ -1387,10 +1394,11 @@ public class Role implements Admin {
     public boolean ajouter_facture(Facture f) {
          PreparedStatement ps;
             try {
-                ps=co.prepareStatement("insert into facture(id_client,date_fac,total) value(?,?,?)");
+                ps=co.prepareStatement("insert into facture(id_client,date_fac,total,login) value(?,?,?,?)");
                 ps.setInt(1, f.getId_client());
                 ps.setDate(2, f.getDate_fac());
                 ps.setFloat(3, f.getTotal());
+                ps.setString(4, f.getLogin());
                 int r=ps.executeUpdate();
                 if(r==0){
                     return false;
@@ -1428,11 +1436,11 @@ public class Role implements Admin {
 		Facture f=null;
 		PreparedStatement ps;
 		try {
-			ps=co.prepareStatement("select * FROM facture f,Client c where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac)  order by f.id_fac ASC");
+			ps=co.prepareStatement("select * FROM facture f,Client c, admin as u where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac and u.login=f.login)  order by f.id_fac ASC");
 			
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				f=new Facture(rs.getInt("f.id_fac"),rs.getString("c.nom_client"),rs.getDate("f.date_fac"),rs.getFloat("total"));
+				f=new Facture(rs.getInt("f.id_fac"),rs.getString("c.nom_client"),rs.getDate("f.date_fac"),rs.getFloat("total"),rs.getString("u.TYPE"),rs.getString("u.NOM"));
 				lc.add(f);
 			}
 		} catch (SQLException e) {
@@ -1450,11 +1458,11 @@ public class Role implements Admin {
 		Facture f=null;
 		PreparedStatement ps; 
 		try {
-			ps=co.prepareStatement("select * FROM facture f,Client c where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac  and f.id_fac=? order by f.id_fac ASC)");
+			ps=co.prepareStatement("select * FROM facture f,Client c, admin as u where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac and u.login=f.login  and f.id_fac=? order by f.id_fac ASC)");
 			ps.setInt(1, num_fac);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				f=new Facture(rs.getInt("f.id_fac"),rs.getString("c.nom_client"),rs.getDate("f.date_fac"),rs.getFloat("total"));
+				f=new Facture(rs.getInt("f.id_fac"),rs.getString("c.nom_client"),rs.getDate("f.date_fac"),rs.getFloat("total"),rs.getString("u.TYPE"),rs.getString("u.NOM"));
 				lc.add(f);
 			}
 		} catch (SQLException e) {
@@ -1474,14 +1482,14 @@ public class Role implements Admin {
 		      try {
 
             if (type.equals("nom_client")) {
-                ps = co.prepareStatement("select * FROM facture f,Client c where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac  and c.nom_client=? order by f.id_fac ASC)");
+                ps = co.prepareStatement("select * FROM facture f,Client c,admin as u where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac and u.login=f.login  and c.nom_client=? order by f.id_fac ASC)");
             } else {
-                ps = co.prepareStatement("select * FROM facture f,Client c where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac  and f.date_fac=? order by f.id_fac ASC)");
+                ps = co.prepareStatement("select * FROM facture f,Client c ,admin as u where exists(select * from commande_cli as cm where f.id_client=c.id_client and  f.id_fac=cm.id_fac  and f.date_fac=? and u.login=f.login order by f.id_fac ASC)");
             }
             ps.setString(1, valeur);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                f = new Facture(rs.getInt("f.id_fac"), rs.getString("c.nom_client"), rs.getDate("f.date_fac"), rs.getFloat("total"));
+                f = new Facture(rs.getInt("f.id_fac"), rs.getString("c.nom_client"), rs.getDate("f.date_fac"), rs.getFloat("total"),rs.getString("u.TYPE"),rs.getString("u.NOM"));
                 lc.add(f);
             }
         } catch (SQLException e) {

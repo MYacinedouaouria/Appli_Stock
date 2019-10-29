@@ -69,6 +69,7 @@ public class vue_pannier_cli extends javax.swing.JDialog {
 	Role r=new Role();
 	ModelTable_cli model=new ModelTable_cli();
         JDialog processus;
+        public static Commande_cli cl; 
     public vue_pannier_cli(JFrame parent, boolean modal,Facture f) {
         super(parent, modal);
         initComponents();
@@ -239,12 +240,17 @@ public class vue_pannier_cli extends javax.swing.JDialog {
         supprimer.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         supprimer.setForeground(new java.awt.Color(255, 0, 0));
         supprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/sup.png"))); // NOI18N
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimerActionPerformed(evt);
+            }
+        });
 
         quitter.setBackground(new java.awt.Color(245, 240, 253));
         quitter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         quitter.setForeground(new java.awt.Color(255, 0, 0));
         quitter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/valider_vente.png"))); // NOI18N
-        quitter.setText("ok");
+        quitter.setText("quitter");
         quitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 quitterActionPerformed(evt);
@@ -255,6 +261,11 @@ public class vue_pannier_cli extends javax.swing.JDialog {
         modifier.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         modifier.setForeground(new java.awt.Color(255, 0, 0));
         modifier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier.png"))); // NOI18N
+        modifier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifierActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
@@ -349,6 +360,41 @@ public class vue_pannier_cli extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_quitterActionPerformed
 
+    private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
+        // TODO add your handling code here:
+        try{
+            int selection=table_com.getSelectedRow();
+            cl=model.l_e.get(selection);
+            new modif_commande(null, true).setVisible(true);
+        
+        
+        }catch(IndexOutOfBoundsException i){
+            new errorClasse(null, true, "selectionner la commande", "nul.png");
+        }
+    }//GEN-LAST:event_modifierActionPerformed
+
+    private void supprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimerActionPerformed
+        // TODO add your handling code here:
+       try{
+        Commande_cli cl=model.l_e.get(table_com.getSelectedRow());
+        int conf=JOptionPane.showConfirmDialog(null, "voulez vous vraiment supprimer?");
+        if(conf==0){
+               if (r.supprimer_com_client(cl)) {
+                   model.l_e.remove(cl);
+                   this.repaint();
+                   JOptionPane.showMessageDialog(null, "good");
+                   journal_facture.actualiser.doClick();
+                   journal_vente_stat1.jour.doClick();
+               } else {
+                   JOptionPane.showMessageDialog(null, "echec");
+               }
+           }
+       }
+       catch(IndexOutOfBoundsException i){
+           JOptionPane.showMessageDialog(null,"selectionner la commande");
+       }
+    }//GEN-LAST:event_supprimerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -408,7 +454,7 @@ public class vue_pannier_cli extends javax.swing.JDialog {
     private javax.swing.JButton modifier;
     private javax.swing.JLabel nom_client;
     private javax.swing.JLabel num_fac;
-    private javax.swing.JButton quitter;
+    public static javax.swing.JButton quitter;
     private javax.swing.JButton supprimer;
     private javax.swing.JTable table_com;
     private java.awt.Label titre;

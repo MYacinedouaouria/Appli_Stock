@@ -187,12 +187,12 @@ SingletonConnecction sg=new SingletonConnecction();
      try {
              PreparedStatement ps;
                 if(filtrage!="tous"){
-                    ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f  where p.id_pro=c.id_pro and c.id_fac=f.id_fac AND f.date_fac BETWEEN ? AND ?  group by p.id_pro order by qv asc");
+                    ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f  where p.id_pro=c.id_pro and c.id_fac=f.id_fac AND f.date_fac BETWEEN ? AND ?  group by p.id_pro order by p.nom_pro asc");
                      ps.setString(1,this.getDate1());
                      ps.setString(2, this.getDate2());
                 }
                 else{
-                     ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f where p.id_pro=c.id_pro and c.id_fac=f.id_fac group by p.id_pro order by qv asc");
+                     ps=co.prepareStatement("SELECT c.id_pro,p.nom_pro,p.nom_categorie, SUM(c.quantite) as qv,SUM(c.pri_uni*c.quantite) as tv from produit  as p,commande_cli as c,facture as f where p.id_pro=c.id_pro and c.id_fac=f.id_fac group by p.id_pro order by p.nom_pro asc");
                 }
                  
          

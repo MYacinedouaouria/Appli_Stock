@@ -194,7 +194,7 @@ class AutoSuggestor {
             int tmp = text.lastIndexOf(" ");
             if (tmp >= currentIndexOfSpace) {
                 currentIndexOfSpace = tmp;
-                wordBeingTyped = text.substring(text.lastIndexOf(""));
+                wordBeingTyped = text;
             }
         } else {
             wordBeingTyped = text;

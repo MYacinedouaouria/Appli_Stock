@@ -65,8 +65,8 @@ public interface Admin {
 		void ajouter_commande(Commande_cli cl);
                 void ajouter_listcom(List<Commande_cli> lc);
 		void ajouter_listcom(List<Commande_cli> lc,Facture f);
-		void supprimer_com_client(Commande_cli co);
-		void modifier_com_client(Commande_cli cl);
+		boolean supprimer_com_client(Commande_cli co);
+		boolean modifier_com_client(Commande_cli cl);
 		Commande_cli recherche_com_client_code(int id_com);
 		List<Commande_cli> recherche_com_client_date(String Date);
 		List<Commande_cli> recherche_com_client(int id_fac);

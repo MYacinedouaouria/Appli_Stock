@@ -15,7 +15,7 @@ public class model_journal_vente extends AbstractTableModel{
 		
 		public List<Journal_vente> lv= new ArrayList<Journal_vente>();
 		//public String[] entete={"MATRICULE","NOM","PRENOM","NOM_FILIERE","NIVEAU","AGE","SEXE"};
-		public String [] title={"NUMERO","NOM PRODUIT","CATEGORIE","QUANTITE VENDUS", "TOTAL VENDUS"};
+		public String [] title={"NUMERO","NOM PRODUIT","CATEGORIE","QUANTITE", "TOTAL"};
 		public model_journal_vente(){
 			super();
 			

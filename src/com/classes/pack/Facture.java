@@ -17,20 +17,41 @@ public class Facture {
     private String nom_client;
     private Date date_fac;
     private float total;
-   
+    private String login;
+    private String statut_vendeur;
+    private String nom_vendeur;
 
-    public Facture(int num_fac, String nom_client, Date date_fac, float total) {
+    public Facture(int num_fac, String nom_client, Date date_fac, float total,String statut,String nom) {
         this.num_fac = num_fac;
         this.nom_client = nom_client;
         this.date_fac = date_fac;
+        this.statut_vendeur=statut;
+        this.nom_vendeur=nom;
         this.total = total;
        
     }
 
-    public Facture(int id_client, Date date_fac, float total) {
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getStatut_vendeur() {
+        return statut_vendeur;
+    }
+
+    public void setStatut_vendeur(String statut_vendeur) {
+        this.statut_vendeur = statut_vendeur;
+    }
+
+    public Facture(int id_client, Date date_fac, float total,String login) {
         this.id_client = id_client;
         this.date_fac = date_fac;
         this.total = total;
+        this.login=login;
     }
     
     public Facture() {
@@ -38,6 +59,14 @@ public class Facture {
 
     public int getNum_fac() {
         return num_fac;
+    }
+
+    public String getNom_vendeur() {
+        return nom_vendeur;
+    }
+
+    public void setNom_vendeur(String nom_vendeur) {
+        this.nom_vendeur = nom_vendeur;
     }
 
     public void setNum_fac(int num_fac) {

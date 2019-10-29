@@ -25,6 +25,8 @@ public class Utilisateur {
         this.nom=nom;
     }
 
+    public Utilisateur(){
+    }
     public String getNom() {
         return nom;
     }

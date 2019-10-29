@@ -355,8 +355,10 @@ public class vue_client1 extends javax.swing.JPanel {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,10 +390,7 @@ public class vue_client1 extends javax.swing.JPanel {
         // TODO add your handling code here:
         //ici on met tous les formulaire � vide
 
-        tel_cli.setText("");
-        nom_client.setText("");
-        add_cli.setText("");
-        ville.setText("");
+       
         actualise_table();
         actualise_panel();
     }//GEN-LAST:event_actualiserActionPerformed
@@ -421,6 +420,7 @@ public class vue_client1 extends javax.swing.JPanel {
                 table_client.setModel(model);
                 jop.showMessageDialog(null, "ajout reussi","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                actualise_table();
             }
 
             else{
@@ -453,6 +453,7 @@ public class vue_client1 extends javax.swing.JPanel {
                     model.l_e.remove(c);
                     jop.showMessageDialog(null,"suppression reussie","suppression",JOptionPane.INFORMATION_MESSAGE);
                     actualise_panel();
+                    actualise_table();
                 }
                 else{
                     jop.showMessageDialog(null,"erreur de suppression","error",JOptionPane.ERROR_MESSAGE);
@@ -484,6 +485,7 @@ public class vue_client1 extends javax.swing.JPanel {
                 actualise_table();
                 jop.showMessageDialog(null, "modification reussie","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                actualise_table();
             }
             else{
                 jop.showMessageDialog(null, "erreur! verifier que le clientt existe!:","erreur de modification",JOptionPane.ERROR_MESSAGE);
@@ -584,7 +586,7 @@ public class vue_client1 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JTextField add_cli;
     private javax.swing.JButton ajouter;
     private javax.swing.JButton imprimer;
@@ -613,6 +615,10 @@ public class vue_client1 extends javax.swing.JPanel {
    
     //methode pour actualiser le panel
     public void actualise_panel(){
+         tel_cli.setText("");
+        nom_client.setText("");
+        add_cli.setText("");
+        ville.setText("");
     	processus.repaint();
         processus.validate();
     }

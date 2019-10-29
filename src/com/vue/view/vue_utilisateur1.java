@@ -251,7 +251,7 @@ public class vue_utilisateur1 extends javax.swing.JPanel {
 
         nom.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gerant", "magasinier", "vendeur", "caissier" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "gerant", "comptable", "vendeur1", "vendeur2" }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -412,6 +412,7 @@ public class vue_utilisateur1 extends javax.swing.JPanel {
                 table_user.setModel(model);
                 jop.showMessageDialog(null, "ajout reussi","good",JOptionPane.INFORMATION_MESSAGE);
                 actualise_panel();
+                vue_utilisateur1.actualiser.doClick();
             }
 
             else{
@@ -491,6 +492,34 @@ public class vue_utilisateur1 extends javax.swing.JPanel {
 
     private void modifier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifier1ActionPerformed
         // TODO add your handling code here:
+         try{
+            Utilisateur u=new Utilisateur();
+            int selection=table_user.getSelectedRow();
+            u=model.l_e.get(selection);
+            //recuperation des valeures dans les champs de saisie
+            u.setPassword(password.getText());
+            u.setType((String)type.getSelectedItem());
+            u.setNom(nom.getText());
+           
+            //operation ajout dans la bd et dans les tables
+            int confirmation=jop.showConfirmDialog(null, "voulez vous vraiment modifier cette utilisateur?","confirmation de modification",JOptionPane.YES_NO_CANCEL_OPTION);
+            if(confirmation==0)
+            if(r.modifier_user(u)){
+                actualise_table();
+                jop.showMessageDialog(null, "modification reussie","good",JOptionPane.INFORMATION_MESSAGE);
+                actualise_panel();
+                actualise_table();
+            }
+            else{
+                jop.showMessageDialog(null, "erreur! verifier que l'utilisateur existe!:","erreur de modification",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(NumberFormatException n){
+            jop.showMessageDialog(null, "veuillez remplir tout vos champs","warming",JOptionPane.WARNING_MESSAGE);
+        }
+        catch(IndexOutOfBoundsException i){
+            jop.showMessageDialog(null, "aucune selection d'utilisateur","selection requise",JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_modifier1ActionPerformed
 
      //la classe interne remplissage
@@ -503,7 +532,7 @@ public class vue_utilisateur1 extends javax.swing.JPanel {
 			Utilisateur u=model.l_e.get(selection);
 			password.setText(u.getPassword());
 			login.setText(u.getLogin());
-			
+			type.setSelectedItem((String)u.getType());
 			nom.setText(u.getNom());
 		}
 
@@ -536,7 +565,7 @@ public class vue_utilisateur1 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private javax.swing.JButton imprimer;
     private javax.swing.JPanel jPanel1;

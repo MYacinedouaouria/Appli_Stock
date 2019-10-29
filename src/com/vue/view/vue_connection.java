@@ -99,7 +99,7 @@ public class vue_connection extends javax.swing.JDialog {
 
         connection.setBackground(new java.awt.Color(245, 240, 253));
         connection.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        connection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/vente2.png"))); // NOI18N
+        connection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/Key_32x32.png"))); // NOI18N
         connection.setToolTipText("connection");
         connection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,8 +306,8 @@ public class vue_connection extends javax.swing.JDialog {
                         
                         
                       //si on est en presence du vendeur
-                        if(user.getType().equals("vendeur")){
-                            page_acceuil1.cl.show(page_acceuil1.jPanel3, "etat de stock");
+                        if(user.getType().equals("vendeur1")||user.getType().equals("vendeur2")){
+                            page_acceuil1.cl.show(page_acceuil1.jPanel3, "journal_vente");
 //                            fe.getClient1().setEnabled(false);
 //                            fe.getUtilisateur().setEnabled(false);
 //                            fe.getEntree().setEnabled(false);
@@ -324,13 +324,8 @@ public class vue_connection extends javax.swing.JDialog {
                             
                         }
                         //en presence du magasinier
-                        else if(user.getType().equals("magasinier")){
-                             fe.getClient1().setEnabled(false);
-                            fe.getUtilisateur().setEnabled(false);
-                            fe.getProduit().setEnabled(false);
-                            fe.getDepense().setEnabled(false);
-                            fe.getVente().setEnabled(false);
-                            fe.getFournisseur().setEnabled(false);
+                        else {
+                             barre_outil.tool_depense.setVisible(false);
                             //on desactive les menus
                             
                         }

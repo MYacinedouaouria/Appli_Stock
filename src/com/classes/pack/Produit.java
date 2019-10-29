@@ -163,23 +163,22 @@ public class Produit {
 
                     switch (j) {
 
+                        
                         case 0:
-                            break;
-                        case 1:
                             p.setNom_produit(sheet.getCell(j, i).getContents().toLowerCase());
                             System.out.println(p.getNom_produit());
                             break;
-                        case 2:
+                        case 3:
                             p.setId_categorie(sheet.getCell(j, i).getContents().toLowerCase());
                             break;
-                        case 3:
+                        case 2:
                             p.setPrix_unitaire(Float.parseFloat(sheet.getCell(j, i).getContents().trim()));
 
                             break;
-                        case 4:
+                        case 1:
                             p.setQuantite(Integer.parseInt(sheet.getCell(j, i).getContents()));
                             break;
-                        case 5:
+                        case 4:
                             p.setAlert(Integer.parseInt(sheet.getCell(j, i).getContents()));
                             break;
                         default:
@@ -187,6 +186,9 @@ public class Produit {
                     }
 
                 }
+                    if(!p.getId_categorie().equals("layette")){
+                        p.setNom_produit(p.getId_categorie()+" "+p.getNom_produit());
+                    }
                 if (!r.produit_existe(p.getNom_produit())) {
                     if (r.ajouter_produit(p)) {
                         nombre_exportaion++;

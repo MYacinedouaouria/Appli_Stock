@@ -375,7 +375,7 @@ public class journal_com_four1 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private javax.swing.JButton imprimer;
     private javax.swing.JPanel jPanel1;

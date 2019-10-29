@@ -76,7 +76,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     //journal_vente1 cm_cli=new journal_vente1();
     journal_vente_stat1 journal_vente;
     journal_achat_stat1 journal_achat;
-    journal_dep_stat journal_depense;
+   public static journal_dep_stat journal_depense;
     //Commande_fournisseur cm_four=new Commande_fournisseur();
     
     journal_com_four1 cm_four=new journal_com_four1();
@@ -169,7 +169,6 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         jLabel1 = new javax.swing.JLabel();
         name_user = new javax.swing.JLabel();
         lab_image = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         statut = new javax.swing.JLabel();
 
@@ -254,10 +253,10 @@ public class page_acceuil1 extends javax.swing.JFrame  {
             }
         });
 
-        label_principal.setFont(new java.awt.Font("Noto Sans CJK SC Black", 3, 36)); // NOI18N
+        label_principal.setFont(new java.awt.Font("Traditional Arabic", 3, 36)); // NOI18N
         label_principal.setForeground(new java.awt.Color(97, 117, 158));
         label_principal.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        label_principal.setText("APPLICATION DE GESTION DE STOCK  COMMERCIALE");
+        label_principal.setText("BLESSING-STOCK");
 
         utilisateur.setBackground(new java.awt.Color(245, 240, 253));
         utilisateur.setFont(new java.awt.Font("Waree", 3, 16)); // NOI18N
@@ -301,8 +300,6 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         lab_image.setBackground(new java.awt.Color(102, 102, 102));
         lab_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/image_acceuil.jpg"))); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/logo_vente.png"))); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(81, 86, 113));
         jLabel4.setText("Statut:");
@@ -344,7 +341,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(statut, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(443, Short.MAX_VALUE))
+                        .addContainerGap(239, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(vente, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,20 +351,16 @@ public class page_acceuil1 extends javax.swing.JFrame  {
                         .addComponent(lab_image, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(0, 0, 0)
-                .addComponent(label_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(443, 443, 443))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(518, 518, 518))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(37, 37, 37)
+                .addComponent(label_principal, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                     .addComponent(name_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -451,6 +444,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         default_dimention();
         cl.show(jPanel3, "user");
         this.setContentPane(jpere);
+        vue_utilisateur1.actualiser.doClick();
     }//GEN-LAST:event_utilisateurActionPerformed
 
     private void produitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produitActionPerformed
@@ -513,7 +507,6 @@ public class page_acceuil1 extends javax.swing.JFrame  {
     private javax.swing.JButton etat_vente;
     private javax.swing.JButton fournisseur;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -548,8 +541,10 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         Insets insets = toolkit.getScreenInsets(gconf);
         System.out.println(insets);
         //this.setResizable(false);
-        this.setSize(dim.width-insets.right, dim.height - insets.bottom);
+       // this.setSize(dim.width-insets.right, dim.height - insets.bottom);
         //this.setSize(1400, 870);
+        this.setPreferredSize(new Dimension(dim.width-50-insets.right, dim.height-50-insets.bottom));
+        //this.setPreferredSize(new Dimension(1400,670));
         this.setLocationRelativeTo(null);
 
 

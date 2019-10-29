@@ -389,7 +389,7 @@ public class journal_facture extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actualiser;
+    public static javax.swing.JButton actualiser;
     private javax.swing.JButton ajouter;
     private com.toedter.calendar.JDateChooser date;
     private javax.swing.JButton imprimer;
