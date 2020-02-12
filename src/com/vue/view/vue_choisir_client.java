@@ -31,7 +31,9 @@ public class vue_choisir_client extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("SELECTION DU TYPE DE CLIENT");
+        
         id_client.setEditable(false);
+        choix.setEnabled(false);
         type_client.addItemListener(new Type_Client());
     }
 
@@ -51,6 +53,7 @@ public class vue_choisir_client extends javax.swing.JDialog {
         annuler = new javax.swing.JButton();
         continuer = new javax.swing.JButton();
         l_idcli = new javax.swing.JLabel();
+        choix = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -90,6 +93,13 @@ public class vue_choisir_client extends javax.swing.JDialog {
         l_idcli.setFont(new java.awt.Font("Liberation Mono", 1, 14)); // NOI18N
         l_idcli.setText("Code du Client");
 
+        choix.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/search.png"))); // NOI18N
+        choix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choixActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -103,11 +113,13 @@ public class vue_choisir_client extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(l_idcli, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(type_client, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id_client, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(85, 85, 85))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(id_client, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(type_client, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addComponent(choix, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(continuer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -122,10 +134,12 @@ public class vue_choisir_client extends javax.swing.JDialog {
                     .addComponent(l_type, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(type_client, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(id_client, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_idcli, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(l_idcli, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(id_client, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(choix, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(annuler, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(continuer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -142,7 +156,7 @@ public class vue_choisir_client extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -216,6 +230,12 @@ public class vue_choisir_client extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_type_clientActionPerformed
 
+    private void choixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choixActionPerformed
+        // TODO add your handling code here:
+        Choix_Client_Vente choix=new Choix_Client_Vente(null, true);
+        choix.setVisible(true);
+    }//GEN-LAST:event_choixActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,8 +283,9 @@ public class vue_choisir_client extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton annuler;
+    public static javax.swing.JButton choix;
     private javax.swing.JButton continuer;
-    private javax.swing.JTextField id_client;
+    public static javax.swing.JTextField id_client;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -278,12 +299,16 @@ public class vue_choisir_client extends javax.swing.JDialog {
         @Override
         public void itemStateChanged(ItemEvent e) {
            if(type_client.getSelectedItem()=="Passage"){
+               id_client.setText("client divers");
                id_client.setEditable(false);
+               id_client.setVisible(true);
+               choix.setEnabled(false);
             
            }
            else if(type_client.getSelectedItem()=="Regulier")
                
-               id_client.setEditable(true);
+               choix.setEnabled(true);
+               
         }
 
         

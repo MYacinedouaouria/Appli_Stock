@@ -1005,20 +1005,22 @@ public class vue_panier extends javax.swing.JDialog {
         JasperReport jasperReport;
         //cas ou le clieny n'est pas regulier 
         //  111 est le code par defauld attribuer à un client de passage
-        if(vue_choisir_client.code_client!=0){
-             // On compile d'abord notre rapport avec la ligne de code suivante
+        
+         // On compile d'abord notre rapport avec la ligne de code suivante
              jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("facture_client.jrxml"));
-             
-             parametres.put("code_client", client.getId_client());
+                .compileReport(getClass().getResourceAsStream("facture_client_pas.jrxml"));
+        if(vue_choisir_client.code_client!=0){
+            
              parametres.put("nom_client", client.getNom_client().toUpperCase());
              parametres.put("addresse", client.getAddresse().toUpperCase());
              parametres.put("ville", client.getVille().toUpperCase());
              parametres.put("telephone", client.getTelephone().toUpperCase());
         }
         else{
-            jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("facture_client_pas.jrxml"));
+            parametres.put("nom_client", "CLIENT DE PASSAGE");
+             parametres.put("addresse", "xxxxxxxxxxxxxxxxxx");
+             parametres.put("ville", "xxxxxxxxxxxxxxxxxx");
+             parametres.put("telephone", "xxxxxxxxxxxxxxxxxx");
            
         }
         //on recupere le numero de la derniere facture

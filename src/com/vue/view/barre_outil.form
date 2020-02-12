@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="acceuil" min="-2" pref="99" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
               <Component id="tool_produit" min="-2" pref="93" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="tool_client" min="-2" pref="99" max="-2" attributes="0"/>

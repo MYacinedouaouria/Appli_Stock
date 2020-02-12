@@ -100,7 +100,6 @@ public class journal_dep_stat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titre_stat = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         imprimer = new javax.swing.JButton();
         vider = new javax.swing.JButton();
@@ -118,11 +117,6 @@ public class journal_dep_stat extends javax.swing.JPanel {
         tous = new javax.swing.JRadioButton();
         l_total = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
-
-        titre_stat.setAlignment(java.awt.Label.CENTER);
-        titre_stat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        titre_stat.setForeground(new java.awt.Color(97, 117, 158));
-        titre_stat.setText("BILAN DES DEPENSES");
 
         imprimer.setBackground(new java.awt.Color(245, 240, 253));
         imprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier2.png"))); // NOI18N
@@ -285,10 +279,6 @@ public class journal_dep_stat extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(titre_stat, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(319, 319, 319))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(l_recherpar2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
@@ -313,9 +303,7 @@ public class journal_dep_stat extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(titre_stat, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,7 +452,6 @@ public class journal_dep_stat extends javax.swing.JPanel {
     private javax.swing.JButton rechercher;
     private javax.swing.JRadioButton semaine;
     public static javax.swing.JTable table_journal;
-    public static java.awt.Label titre_stat;
     private javax.swing.JLabel total;
     private javax.swing.JRadioButton tous;
     private javax.swing.JButton vider;

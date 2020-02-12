@@ -10,6 +10,8 @@ import com.classes.pack.Commande_four;
 import com.classes.pack.Journal_vente;
 import com.classes.pack.test;
 import com.implementation.pack.Role;
+import com.jtattoo.plaf.smart.SmartLookAndFeel;
+import com.jtattoo.plaf.texture.TextureLookAndFeel;
 import com.vue.view.vue_connection;
 //import com.sun.java.swing.plaf.windows.resources.windows;
 import java.sql.SQLException;
@@ -17,6 +19,7 @@ import java.text.ParseException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JWindow;
+import javax.swing.UIManager;
 
 
 /**
@@ -32,6 +35,13 @@ public class ProjetLibrairie {
         // TODO code application logic here
        // testreport t=new testreport();
      //   t.setVisible(true);
+        try {
+            TextureLookAndFeel tf=new TextureLookAndFeel();
+            SmartLookAndFeel sm=new SmartLookAndFeel();
+                    UIManager.setLookAndFeel(tf);
+
+        } catch (Exception e) {
+        }
         vue_connection vc=new vue_connection(null, true);
         vc.setVisible(true);
 //        page_acceuil1 pa=new page_acceuil1();

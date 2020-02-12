@@ -256,7 +256,7 @@ public class page_acceuil1 extends javax.swing.JFrame  {
         label_principal.setFont(new java.awt.Font("Traditional Arabic", 3, 36)); // NOI18N
         label_principal.setForeground(new java.awt.Color(97, 117, 158));
         label_principal.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        label_principal.setText("BLESSING-STOCK");
+        label_principal.setText("APPLI-STOCK");
 
         utilisateur.setBackground(new java.awt.Color(245, 240, 253));
         utilisateur.setFont(new java.awt.Font("Waree", 3, 16)); // NOI18N

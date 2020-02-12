@@ -333,7 +333,7 @@ public class barre_outil extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(acceuil, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
+                .addGap(220, 220, 220)
                 .addComponent(tool_produit, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tool_client, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,18 +385,22 @@ public class barre_outil extends javax.swing.JPanel {
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "produit");
         vue_pro.actualiser.doClick();
+        page_acceuil1.container.setTitle("GESTION DES PRODUITS");
+        
     }//GEN-LAST:event_tool_produitActionPerformed
 
     private void tool_clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_clientActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "client");
         vue_client1.actualiser.doClick();
+        page_acceuil1.container.setTitle("GESTION DES CLIENTS");
     }//GEN-LAST:event_tool_clientActionPerformed
 
     private void tool_fourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_fourActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "fournisseur");
         vue_fournisseur2.actualiser.doClick();
+        page_acceuil1.container.setTitle("GESTION DES FOURNISSEURS");
     }//GEN-LAST:event_tool_fourActionPerformed
 
     private void tool_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_venteActionPerformed
@@ -409,35 +413,41 @@ public class barre_outil extends javax.swing.JPanel {
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "com_client");
         journal_facture.actualiser.doClick();
            }
+           page_acceuil1.container.setTitle("ESPACE VENTE");
     }//GEN-LAST:event_tool_venteActionPerformed
 
     private void tool_entreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_entreeActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "com_fournisseur");
         journal_com_four1.actualiser.doClick();
+        page_acceuil1.container.setTitle("GESTION DES  ACHATS");
     }//GEN-LAST:event_tool_entreeActionPerformed
 
     private void tool_etat_venteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_venteActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "journal_vente");
         journal_dep_stat.jour.doClick();
+        page_acceuil1.container.setTitle("ETAT DES VENTES");
     }//GEN-LAST:event_tool_etat_venteActionPerformed
 
     private void tool_etat_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_stockActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "etat de stock");
+        page_acceuil1.container.setTitle("ETAT DU STOCK");
     }//GEN-LAST:event_tool_etat_stockActionPerformed
 
     private void tool_depenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_depenseActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3,"depense");
         vue_depense1.actualiser.doClick();
+        page_acceuil1.container.setTitle("GESTION DES DEPENSES");
     }//GEN-LAST:event_tool_depenseActionPerformed
 
     private void tool_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_userActionPerformed
         // TODO add your handling code here:
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "user");
         vue_utilisateur1.actualiser.doClick();
+        page_acceuil1.container.setTitle("GESTION DES UTILISATEURS");
     }//GEN-LAST:event_tool_userActionPerformed
 
     private void acceuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceuilActionPerformed
@@ -451,13 +461,14 @@ public class barre_outil extends javax.swing.JPanel {
         
         page_acceuil1.cl.show(page_acceuil1.jPanel3, "bilan_dep");
         //methode pour actualiser le panel
-       
+       page_acceuil1.container.setTitle("BILAN DES DEPENSES");
     }//GEN-LAST:event_tool_etat_depActionPerformed
 
     private void tool_etat_achatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tool_etat_achatActionPerformed
         // TODO add your handling code here:
          page_acceuil1.cl.show(page_acceuil1.jPanel3, "bilan_achat");
          journal_achat_stat1.jour.doClick();
+         page_acceuil1.container.setTitle("BILAN DES ACHATS");
     }//GEN-LAST:event_tool_etat_achatActionPerformed
 
     private void tool_produitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tool_produitMouseClicked

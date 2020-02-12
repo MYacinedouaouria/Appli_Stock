@@ -108,7 +108,6 @@ public class vue_pro extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         imprimer = new javax.swing.JButton();
         l_recherpar = new javax.swing.JLabel();
@@ -135,11 +134,6 @@ public class vue_pro extends javax.swing.JPanel {
         quantite = new javax.swing.JFormattedTextField();
         l_alert1 = new javax.swing.JLabel();
         import_excel = new javax.swing.JButton();
-
-        label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        label1.setForeground(new java.awt.Color(97, 117, 158));
-        label1.setText("GESTION DES PRODUITS");
 
         imprimer.setBackground(new java.awt.Color(245, 240, 253));
         imprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier2.png"))); // NOI18N
@@ -423,10 +417,6 @@ public class vue_pro extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(319, 319, 319))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -445,12 +435,9 @@ public class vue_pro extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -706,6 +693,7 @@ public class vue_pro extends javax.swing.JPanel {
 			categorie.setSelectedItem((String)p.getId_categorie().trim());
 			prix_uni.setValue(p.getPrix_unitaire());
                         stock_alert.setValue(p.getAlert());
+                        quantite.setValue(p.getQuantite());
 			
 		}
 
@@ -754,7 +742,6 @@ public class vue_pro extends javax.swing.JPanel {
     private javax.swing.JLabel l_nompro;
     private javax.swing.JLabel l_pu;
     private javax.swing.JLabel l_recherpar;
-    private java.awt.Label label1;
     private java.awt.Label label2;
     private javax.swing.JButton modifier;
     private javax.swing.JTextField nom_produit;

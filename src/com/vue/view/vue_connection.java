@@ -321,6 +321,10 @@ public class vue_connection extends javax.swing.JDialog {
                                 barre_outil.tool_produit.setVisible(false);
                                barre_outil.tool_user.setVisible(false);
                                barre_outil.acceuil.setVisible(false);
+                               
+                               //on desactive la suppression et la modification des ventes par le vendeur
+                               vue_depense1.supprimer.setVisible(false);
+                               vue_depense1.modifier.setVisible(false);
                             
                         }
                         //en presence du magasinier

@@ -320,7 +320,7 @@
               <Color blue="9e" green="75" red="61" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="BLESSING-STOCK"/>
+            <Property name="text" type="java.lang.String" value="APPLI-STOCK"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BlinkingLabel(&quot;fs&quot;,new java.awt.Color(97, 117, 158),new Color(85,170,255), new Color(186,61,70))"/>

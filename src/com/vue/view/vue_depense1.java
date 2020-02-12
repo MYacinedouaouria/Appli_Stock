@@ -72,7 +72,6 @@ public class vue_depense1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label1 = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         imprimer = new javax.swing.JButton();
         vider = new javax.swing.JButton();
@@ -94,11 +93,6 @@ public class vue_depense1 extends javax.swing.JPanel {
         type_dep = new javax.swing.JComboBox<>();
         montant = new javax.swing.JFormattedTextField();
         modifier = new javax.swing.JButton();
-
-        label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        label1.setForeground(new java.awt.Color(97, 117, 158));
-        label1.setText("GESTION DES DEPENSES");
 
         imprimer.setBackground(new java.awt.Color(245, 240, 253));
         imprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier2.png"))); // NOI18N
@@ -337,21 +331,14 @@ public class vue_depense1 extends javax.swing.JPanel {
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(319, 319, 319))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -551,14 +538,13 @@ public class vue_depense1 extends javax.swing.JPanel {
     private javax.swing.JLabel l_nature;
     private javax.swing.JLabel l_recherpar;
     private javax.swing.JLabel l_type;
-    private java.awt.Label label1;
     private java.awt.Label label2;
-    private javax.swing.JButton modifier;
+    public static javax.swing.JButton modifier;
     private javax.swing.JFormattedTextField montant;
     private javax.swing.JTextField nature;
     private javax.swing.JButton rechercher;
     private javax.swing.JComboBox<String> selection_recher;
-    private javax.swing.JButton supprimer;
+    public static javax.swing.JButton supprimer;
     private javax.swing.JTable table_depense;
     private javax.swing.JComboBox<String> type_dep;
     private javax.swing.JTextField valeur_recher;

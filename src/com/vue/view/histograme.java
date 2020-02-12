@@ -30,8 +30,7 @@ public class histograme extends javax.swing.JPanel {
     model_stat_hist model=new model_stat_hist();
     public histograme() {
         initComponents();
-        model.l_e=r.bilan("mois");
-        table_histogramme.setModel(model);
+        
     }
 
     /**
@@ -45,7 +44,7 @@ public class histograme extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         table_histogramme = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        histo = new javax.swing.JButton();
 
         table_histogramme.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -65,10 +64,10 @@ public class histograme extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table_histogramme);
 
-        jButton1.setText("histogramme");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        histo.setText("histogramme");
+        histo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                histoActionPerformed(evt);
             }
         });
 
@@ -79,7 +78,7 @@ public class histograme extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(histo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(241, 241, 241))
         );
         layout.setVerticalGroup(
@@ -87,15 +86,17 @@ public class histograme extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                .addComponent(histo, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void histoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histoActionPerformed
        String [] mois={"janvier", "fevrier", "mars", "avril", "mais"};
        double [] m={550000,300009, 503000, 790000, 540000};
        
+       model.l_e=r.bilan("mois");
+        table_histogramme.setModel(model);
        
        ArrayList<String> nom_des_mois=new ArrayList();
        ArrayList<String> a=new ArrayList();
@@ -107,40 +108,40 @@ public class histograme extends javax.swing.JPanel {
        for(int i=0; i<a.size();i++){
            switch (a.get(i)){
                case "1":
-                   nom_des_mois.add("janvier");
+                   nom_des_mois.add("JANVIER");
                 break;
                  case "2":
-                   nom_des_mois.add("fevrier");
+                   nom_des_mois.add("FEVRIER");
                 break;
                  case "3":
-                   nom_des_mois.add("mars");
+                   nom_des_mois.add("MARS");
                 break;
                  case "4":
-                   nom_des_mois.add("avrilr");
+                   nom_des_mois.add("AVRIL");
                 break;
                  case "5":
-                   nom_des_mois.add("mai");
+                   nom_des_mois.add("MAI");
                 break;
                  case "6":
-                   nom_des_mois.add("juin");
+                   nom_des_mois.add("JUIN");
                 break;
                  case "7":
-                   nom_des_mois.add("juillet");
+                   nom_des_mois.add("JUILLET");
                 break;
                  case "8":
-                   nom_des_mois.add("août");
+                   nom_des_mois.add("AOUT");
                 break;
                  case "9":
-                   nom_des_mois.add("septembre");
+                   nom_des_mois.add("SEPTEMBRE");
                 break;
                  case "10":
-                   nom_des_mois.add("octobre");
+                   nom_des_mois.add("OCTOBRE");
                 break;
                  case "11":
-                   nom_des_mois.add("novembre");
+                   nom_des_mois.add("NOVEMBRE");
                 break;
                  case "12":
-                   nom_des_mois.add("decembre");
+                   nom_des_mois.add("DECEMBRE");
                 break;
            }
            
@@ -152,11 +153,11 @@ public class histograme extends javax.swing.JPanel {
        drawHistogramme(montant, nom_des_mois,"MONTANT", "PERIODE", "STATISTIQUE ANNUELLE", "STATISTIQUE DE VENTE ANNUELLE", dim);
         
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_histoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    public static javax.swing.JButton histo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table_histogramme;
     // End of variables declaration//GEN-END:variables
@@ -178,13 +179,15 @@ public class histograme extends javax.swing.JPanel {
                data.setValue(Double.parseDouble(montant.get(i).toString()), "montant", mois.get(i).toString()); 
             }
             
-            JFreeChart chart=ChartFactory.createBarChart(titreHeader,titreHorizontal,titreVertical, data, PlotOrientation.VERTICAL, false, true, false);
+            JFreeChart chart=ChartFactory.createStackedBarChart(titreHeader,titreHorizontal,titreVertical, data, PlotOrientation.VERTICAL, false, true, false);
             CategoryPlot p=chart.getCategoryPlot();
+            
             p.setRangeGridlinePaint(Color.blue);
             ChartFrame frame=new ChartFrame(titrePaneau, chart);
             frame.setResizable(false);
             frame.setVisible(true);
             frame.setSize(dimenssion);
+            frame.setLocationRelativeTo(null);
             
         }
     }

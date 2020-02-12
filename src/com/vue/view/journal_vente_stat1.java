@@ -14,6 +14,10 @@ import com.modele_table.pack.BeauteTableau.BeauteQteProduit;
 import com.modele_table.pack.BeauteTableau.TableHeader;
 import com.modele_table.pack.ModelTable;
 import com.modele_table.pack.model_journal_vente;
+import com.modele_table.pack.model_stat_hist;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
@@ -36,6 +40,12 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -57,6 +67,9 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         model_journal_vente mj=new model_journal_vente();
         //il faut mettre nos bouttons radio dzans un groupe
         ButtonGroup bg;
+        Role r=new Role();
+        //objet pour histo
+        model_stat_hist model=new model_stat_hist();
     public journal_vente_stat1() throws SQLException, ParseException {
         
         initComponents();
@@ -96,7 +109,6 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        titre_stat = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         imprimer = new javax.swing.JButton();
         vider = new javax.swing.JButton();
@@ -115,11 +127,6 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
         l_total = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
         but_histo = new javax.swing.JButton();
-
-        titre_stat.setAlignment(java.awt.Label.CENTER);
-        titre_stat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        titre_stat.setForeground(new java.awt.Color(97, 117, 158));
-        titre_stat.setText("BILAN DES VENTES");
 
         imprimer.setBackground(new java.awt.Color(245, 240, 253));
         imprimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/vue/view/image_app/modifier2.png"))); // NOI18N
@@ -310,17 +317,11 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(titre_stat, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(363, 363, 363))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(titre_stat, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -455,11 +456,92 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
     }//GEN-LAST:event_tousActionPerformed
 
     private void but_histoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_histoActionPerformed
-       voir_histogramme vh=new voir_histogramme(null,true);
-       vh.setVisible(true);
+       
+       
+       model.l_e=r.bilan("mois");
+        
+       
+       ArrayList<String> nom_des_mois=new ArrayList();
+       ArrayList<String> a=new ArrayList();
+       ArrayList montant= new ArrayList();
+       for(int i=0; i<model.l_e.size(); i++){
+           a.add(model.l_e.get(i).getDate());
+           montant.add(model.l_e.get(i).getMontant());
+       }
+       for(int i=0; i<a.size();i++){
+           switch (a.get(i)){
+               case "1":
+                   nom_des_mois.add("JANVIER");
+                break;
+                 case "2":
+                   nom_des_mois.add("FEVRIER");
+                break;
+                 case "3":
+                   nom_des_mois.add("MARS");
+                break;
+                 case "4":
+                   nom_des_mois.add("AVRIL");
+                break;
+                 case "5":
+                   nom_des_mois.add("MAI");
+                break;
+                 case "6":
+                   nom_des_mois.add("JUIN");
+                break;
+                 case "7":
+                   nom_des_mois.add("JUILLET");
+                break;
+                 case "8":
+                   nom_des_mois.add("AOUT");
+                break;
+                 case "9":
+                   nom_des_mois.add("SEPTEMBRE");
+                break;
+                 case "10":
+                   nom_des_mois.add("OCTOBRE");
+                break;
+                 case "11":
+                   nom_des_mois.add("NOVEMBRE");
+                break;
+                 case "12":
+                   nom_des_mois.add("DECEMBRE");
+                break;
+           }
+           
+       }
+       
+       
+       Dimension dim=new Dimension(700,650);
+        
+       drawHistogramme(montant, nom_des_mois,"MONTANT", "PERIODE", "STATISTIQUE MENSUELLE", "STATISTIQUE DE VENTE MENSUELLE", dim);
+        
+
     }//GEN-LAST:event_but_histoActionPerformed
 
-    
+    private void drawHistogramme(ArrayList montant, ArrayList mois, String titreVertical, String titreHorizontal, String titrePaneau, String titreHeader, Dimension dimenssion){
+        if(montant.size()==mois.size()){
+            DefaultCategoryDataset data= new DefaultCategoryDataset();
+            for(int i=0; i<montant.size(); i++){
+               data.setValue(Double.parseDouble(montant.get(i).toString()), "montant", mois.get(i).toString()); 
+            }
+            
+            JFreeChart chart=ChartFactory.createStackedBarChart(titreHeader,titreHorizontal,titreVertical, data, PlotOrientation.VERTICAL, false, true, false);
+            chart.setBackgroundPaint(Color.white); 
+            chart.setBorderVisible(false);
+            
+            CategoryPlot p=chart.getCategoryPlot();
+            
+            p.setBackgroundPaint(Color.LIGHT_GRAY);
+            
+            
+            ChartFrame frame=new ChartFrame(titrePaneau, chart);
+            frame.setResizable(false);
+            frame.setVisible(true);
+            frame.setSize(dimenssion);
+            frame.setLocationRelativeTo(null);
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton but_histo;
@@ -477,7 +559,6 @@ public class journal_vente_stat1 extends javax.swing.JPanel {
     private javax.swing.JButton rechercher;
     private javax.swing.JRadioButton semaine;
     private javax.swing.JTable table_journal;
-    public static java.awt.Label titre_stat;
     private javax.swing.JLabel total;
     private javax.swing.JRadioButton tous;
     private javax.swing.JButton vider;
